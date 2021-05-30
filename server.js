@@ -1,6 +1,7 @@
 const debug = require('debug')('app:server');
 const session = require('cookie-session');
 const express = require('express');
+const morgan = require('morgan');
 const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
@@ -10,6 +11,8 @@ const config = require(CONFIG_FILE_PATH);
 const logger = require('morgan');
 const path = require('path');
 const cors = require('cors');
+const swaggerUi = require('swagger-ui-express'),
+swaggerDocument = require('./swagger.json');
 
 var admin = require("firebase-admin");
 var serviceAccount = require('./private_key_firebase.json');
@@ -29,7 +32,13 @@ app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 
 // Body Parser
+app.use(morgan('tiny'));
 app.use(logger('dev'));
+app.use(
+  '/api-docs',
+  swaggerUi.serve, 
+  swaggerUi.setup(swaggerDocument)
+);
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
 
