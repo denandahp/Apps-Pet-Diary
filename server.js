@@ -11,15 +11,10 @@ const config = require(CONFIG_FILE_PATH);
 const logger = require('morgan');
 const path = require('path');
 const cors = require('cors');
+const admin = require('./config/firebase_config.js')
+
 const swaggerUi = require('swagger-ui-express'),
 swaggerDocument = require('./swagger.json');
-
-var admin = require("firebase-admin");
-var serviceAccount = require('./private_key_firebase.json');
-
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)
-});
 
 const PORT = process.env.PORT || 3000;
 
@@ -85,10 +80,11 @@ app.use(function LocalsMiddleware(req, res, next) {
 });
 
 const index = require('./routes/index.js');
-
+const user = require('./routes/user.js');
 
 
 app.use('/', index);
+app.use('/api/user', user);
 
 
 // Error Middleware

@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "petonesia-petdiary-staging",
+  "private_key_id": "8fa8036f73dd581f4c792b0554da42c46b35943d",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCQ085HVi075OTi\nS95p7Oh3D9T9JfhrmDfqWBa+QiiOwc7+1WIIL1eTnu/HvcYaCPqHAw0TBs+b2oMx\niSBbBhjdFQ+ytUoPoMRdy7n6ONIaXu5O262NlPfZipWc0MCcw1yA6baGxv/VWWZs\nJUHnSFy8YvUSyIIfopxWEqqlfPG3U/VDMBshDJcEuXolUGWjfp5zW9JcKdXDOQpz\nLSvVZUAAET7ivKYPVmNCTOG8i/xY51JaqfCOOCKQbbE0+XZWdQw9S+BfxRImuuKb\ne8ihU2Q5Eias8JxAyEntIU2mfi22O13u+P55cHQoQXhd0yiUWPrNVQ7h13k2KeGg\ncjWV68d/AgMBAAECggEAEB/k5EBjV5B2g1OFzIQEpdeXaSVPG/ud+MjHT3Y3jx1j\nmdp8Ha6CW6c4dHlb6GN+MTCqcKczejDBUUST26PkJMlG2X4huXe2z+fyKY/QpKr+\ncWfip37MfDtXyQEyUMHXjMAjWFd+UxdZtfS3+l4uJQiyLIiHzv811Md4mbroK/b8\nLpC8r709wI4S1t/WeY+5BhnLbQrLgZNRk87rG8eCJ9O4JF+QUjXvOl9c0ELvnWXc\ncOWeh3252BL+wbjHhx59wrv5vIGEnWeT5+QIsVSvvP7/DahPv/bRmGSptVpM/mqg\nz1OXtw+6HQpKayfRVQPWJ1SwQFJNeyc9eTPzrEj1gQKBgQDAtZnGhHnMWfkVsGn1\nrIK43oJ+y/IRgPb2vuT7MEwskhvS/TuSYoHpPCvOKOqBZlvQ2Js1Gxpedsru5pPH\nyvPdHLJYI8iOb/SXM49VJUAYtdR0U97v5bXqD6Bfo1O1Ilem7L63gEU5ony13fMo\nLrP7IrxgdCBEjSb1oTvCoAjp4QKBgQDAZG+ZniqbxyEbSKt+rLEBg9DgPwxEGALE\nd517v4GzQEh0tg6PXh1g6oI4Deu5MvSB/vrNC+l9cmq8JypkVUNnjAmrTUwp73bj\nLUOykMYMUyw/CYsELJ+R7GTP0NS8VfeHmXN/pZ374acG7wmwMCJ9dj6BZDMziH9z\nLHfuzO6dXwKBgBUx4//ZgivfmW2xQXYryxTaJDAd7jnOnVr2E+ksnrQoPbcu8uZe\nvzsPyyGZjnE8+Mw3hpqIqJXLKvarlYVb5QZkqZjYFq7T0Wrv2MvclPgix4Mj1lk8\nQo3DujfKluJNLKbHUxKLoRF9tYmrJ5s7x7/PSjixjPr9K1PIr/Hv+AsBAoGATPUf\n6vvooU1jAc3sw4wCdc+rcrfliSttl/cc6I4vLGuPUBgu9Mw5xjWoBxISc49dXM6I\nthKIwGRPK5ojC+VLRBUxHPObfr7J+I93n+rnPbDbZw/DKtVKsw0zOimXnwpoLDaG\ni83Mxx95N33Qi0iF01fEIu/Yx0lXadOk2cHhxNMCgYB4HcFwH9X8ykGMlLNDkvap\n3gROzbtoCZ062cjEObuEYhY3eKh2tKL/+hA0EkXWqe892kEtNImUWw0+NFNV9mO3\nFx2WEyPdORNefOhEQeJTzlneZM72cMjB2e6KV5kPBwyK+jRseIFnnzkJGUHdHvF1\n/M6Di/zFDNXw69iZAXcyhg==\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-cgtht@petonesia-petdiary-staging.iam.gserviceaccount.com",
+  "client_id": "117489503057391335157",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-cgtht%40petonesia-petdiary-staging.iam.gserviceaccount.com"
+}
