@@ -1,15 +1,19 @@
-version: '3.7'
+version: '3.8'
 
 services:
     pet-diary:
-        build: .
+        #Use Build if in Development
+        #Use image if in Production
+        # build: .
+        image: denandahp/pet-diary-backend:0.0.1
         container_name: pet-diary-run
         networks:
             - app
         ports:
             - 3000:3000
-        volumes:
-            - ./:/app
+        #Use Volume if in Development & comment if in production
+        # volumes:
+        #     - .:/app
 
 networks:
    app:
