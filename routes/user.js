@@ -3,8 +3,10 @@ const auth = require('../middleware/auth.js');
 const user = require('../controllers/user.js');
 
 
-Router.post('/signup',  user.signup)
+Router.post('/signup', auth, user.signup)
       .post('/registerfirebase',  user.register)
+      .put('/update/profile', auth, user.updateprofile)
+      .get('/profile/:uid', auth, user.getprofile)
 
 
 module.exports = Router;

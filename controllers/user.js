@@ -45,6 +45,50 @@ class UserController {
     authUtils.processRequestWithJWT(req, callback, fallback);
   }
 
+  async updateprofile(req, res, next) {
+    let callback = async () => {
+      try {
+        let datas = req.body;
+        debug('detail %o', datas);
+        let detail = await user.updateprofile(datas);
+        if (detail.status == '400'){res.status(400).json({detail });
+        }else {res.status(200).json({detail });
+        }
+
+      } catch (e) {
+        next(e.detail || e);
+      }
+    };
+    let fallback = (err) => {
+      next(err);
+    }
+    authUtils.processRequestWithJWT(req, callback, fallback);
+  }
+
+  async getprofile(req, res, next) {
+    let callback = async () => {
+      res.locals.edit = true;
+      let uid = req.params.uid;
+      try {
+        let detail = await user.getprofile(uid);
+        if (detail.status == '400'){res.status(400).json({detail});}
+        else { res.status(200).json({detail});}
+
+      } catch (e) {
+        console.log(e);
+        let errorResponse = authUtils.processLoginError(e);
+        res.status(400).json({
+          errorResponse
+        });
+      }
+    };
+    let fallback = (err) => {
+      console.log(err);
+      next(err);
+    }
+    authUtils.processRequestWithJWT(req, callback, fallback);
+  }
+
   async register(req, res, next) {
     let callback = async () => {
       try {

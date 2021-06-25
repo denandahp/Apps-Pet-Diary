@@ -8,10 +8,9 @@ const totp = jsotp.TOTP('BASE32ENCODEDSECRET');
 const schema = '"users"';
 const dbDetail = schema + '.' + '"detail_users"';
 const dbUser = schema + '.' + '"users"';
+const dbViewprofile = schema + '.' + '"profile_user"';
 const schemapet = '"pets"';
 const dbPets = schemapet + '.' + '"pets"';
-const dbPettype = schemapet + '.' + '"pet_type"';
-const dbPetdetail = schemapet + '.' + '"pet_detail"';
 
 class UserModel {
 
@@ -43,8 +42,45 @@ class UserModel {
       let valueuser = [data.uid_firebase, data.email, data.type_auth, d];
       console.log(valueuser);
       resuser = await pool.query('INSERT INTO ' + dbUser + ' (uid, email, type_auth, created_at) VALUES ($1, $2, $3, $4) RETURNING *', valueuser);
-      let valuedet = [data.uid_firebase, data.full_name, data.phone, data.photo_path ,d];
-      resdet = await pool.query('INSERT INTO ' + dbDetail + ' (uid_user, full_name, phone, photo_path, created_at) VALUES ($1, $2, $3, $4, $5) RETURNING *', valuedet);
+      let valuedet = [data.uid_firebase, data.full_name, data.phone, data.birthday, data.photo_path ,d];
+      resdet = await pool.query('INSERT INTO ' + dbDetail + ' (uid_user, full_name, phone, birthday, user_photo, created_at) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *', valuedet);
+      result.detail = resdet.rows[0];
+      result.user = resuser.rows[0];
+      console.log(result);
+      debug('get %o', result);
+      return result;
+
+    } catch (ex) {
+      console.log('Enek seng salah iki ' + ex)
+      return {status:'400', Error : ""+ex};
+    };
+  }
+
+  async getprofile (uid) {
+    try{
+    
+      let res;
+      if (uid === 'all') {
+        res = await pool.query('SELECT * from ' + dbViewprofile + ' ORDER BY user_id ASC')
+      } else {
+        res = await pool.query('SELECT * from ' + dbViewprofile + ' where uid = $1 ORDER BY user_id ASC', [uid]);
+      }
+      debug('get %o', res);
+      return res.rows;
+    } catch (ex) {
+      console.log('Enek seng salah iki ' + ex)
+      return {status:'400', Error : ""+ex};
+    };
+  }
+
+  async updateprofile(data) {
+    try{
+      let resdet, resuser, result = {};
+      var d = new Date(Date.now());d.toLocaleString('en-GB', { timeZone: 'Asia/Jakarta' });
+      let valueuser = [data.uid_firebase, data.email];
+      resuser = await pool.query('UPDATE ' + dbUser + ' SET email = $2 WHERE uid = $1 RETURNING *', valueuser);
+      let valuedet = [data.uid_firebase, data.full_name, data.phone, data.birthday, data.photo_path ,d];
+      resdet = await pool.query('UPDATE' + dbDetail + ' SET (full_name, phone, birthday, user_photo, created_at) = ($2, $3, $4, $5, $6) where uid_user = $1 RETURNING *', valuedet);
       result.detail = resdet.rows[0];
       result.user = resuser.rows[0];
       console.log(result);

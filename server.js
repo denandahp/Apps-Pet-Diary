@@ -83,8 +83,6 @@ const index = require('./routes/index.js');
 const user = require('./routes/user.js');
 const pet = require('./routes/pet.js');
 
-
-
 app.use('/', index);
 app.use('/api/user', user);
 app.use('/api/pet', pet);
