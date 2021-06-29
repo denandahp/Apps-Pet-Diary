@@ -74,13 +74,14 @@ class UserModel {
 
   async getprofile (uid) {
     try{
-    
+      console.log("cek sini");
       let res;
       if (uid === 'all') {
         res = await pool.query('SELECT * from ' + dbViewprofile + ' ORDER BY user_id ASC')
       } else {
         res = await pool.query('SELECT * from ' + dbViewprofile + ' where uid = $1 ORDER BY user_id ASC', [uid]);
       }
+      
       debug('get %o', res);
       return res.rows;
     } catch (ex) {

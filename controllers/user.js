@@ -1,12 +1,9 @@
 const debug = require('debug')('app:controller:user');
 const authUtils = require('./authUtils.js');
 const user = require('../models/user.js');
-const jwt = require('jsonwebtoken');
-const config = require('../configs.json');
 const jsotp = require('jsotp');
 const totp = jsotp.TOTP('BASE32ENCODEDSECRET');
-const maxAge = 1 * 24 * 60 * 60;
-let refreshTokens = []
+
 
 class UserController {
   async showAllUser(req, res) {

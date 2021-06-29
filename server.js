@@ -12,11 +12,17 @@ const logger = require('morgan');
 const path = require('path');
 const cors = require('cors');
 const admin = require('./config/firebase_config.js')
+const dotenv = require('dotenv');
+
+
+dotenv.config();
 
 const swaggerUi = require('swagger-ui-express'),
 swaggerDocument = require('./swagger.json');
 
+
 const PORT = process.env.PORT || 3000;
+console.log(`Your port is ${PORT}`);
 
 server.listen(PORT, () => {
   debug('Server Started. *:%o', PORT);

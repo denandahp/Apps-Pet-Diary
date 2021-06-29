@@ -85,3 +85,6 @@ jsconfig.json
 
 # Ignore uploads
 uploads/
+
+#Ignore environment
+.env

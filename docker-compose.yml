@@ -4,13 +4,24 @@ services:
     pet-diary:
         #Use Build if in Development
         #Use image if in Production
-        # build: .
+        # build:
+        #     context: .
+        #     dockerfile: Dockerfile
         image: denandahp/pet-diary-backend:0.0.1
         container_name: pet-diary-run
+        env_file: .env
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_HOST=18.216.58.97
+            - POSTGRES_DATABASE=petdiary
+            - POSTGRES_PASSWORD=postgres
+            - POSTGRES_SSLMODE=$POSTGRES_SSLMODE
+            - POSTGRES_PORT=$POSTGRES_PORT
         networks:
             - app
         ports:
             - 3000:3000
+        # command: user:postgre host:18.216.58.97 db:petdiary pass:postgres  -- npm start
         #Use Volume if in Development & comment if in production
         # volumes:
         #     - .:/app
