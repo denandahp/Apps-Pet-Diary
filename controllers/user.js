@@ -24,17 +24,25 @@ class UserController {
       try {
         let datas = req.body;
         debug('detail %o', datas);
-        let detail = await user.signup(datas);
-        if (detail.status == '400'){
-          res.status(400).json({
-            detail
-          });
-        }else {
+        let checkdatauser = await user.checkdatauser(datas);
+        if(checkdatauser.status == '200'){
           res.status(200).json({
-            detail
+            message: "UID Sudah Terdaftar!",
+            status : checkdatauser.errors
           });
         }
-
+        else {
+          let detail = await user.signup(datas);
+          if (detail.status == '400'){
+            res.status(400).json({
+              detail
+            });
+          }else {
+            res.status(200).json({
+              detail
+            });
+          }
+        }
       } catch (e) {
         next(e.detail || e);
       }

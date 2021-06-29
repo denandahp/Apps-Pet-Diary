@@ -35,6 +35,22 @@ class UserModel {
     }
   }
 
+  async checkdatauser(data){
+      try{
+        let status ;
+        const res = await pool.query('SELECT * FROM' + dbViewprofile + 'where uid = $1 ',[data.uid_firebase]);
+        if (res.rowCount > 0) {
+          if (res.rows[0].uid == data.uid_firebase){return {"status":"200", "errors": `uid ${data.uid_firebase} sudah terdaftar`}}
+          else{return status = '400'}
+        } else {
+          return status = '400'
+        }
+
+    }catch(ex){
+      console.log('Enek seng salah iki ' + ex)
+    };
+  }
+
   async signup(data) {
     try{
       let resdet, resuser, result = {};
