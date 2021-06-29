@@ -39,6 +39,7 @@ class UserController {
             });
           }else {
             res.status(200).json({
+              message: "UID Baru Telah diDaftarkan!",
               detail
             });
           }
