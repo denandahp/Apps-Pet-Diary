@@ -101,8 +101,7 @@ class UserController {
       let uid = req.params.uid;
       try {
         let detail = await user.checkdatauser(uid);
-        if (detail.status == '400'){res.status(400).json({detail});}
-        else { res.status(200).json({detail});}
+        res.status(200).json({detail});
 
       } catch (e) {
         console.log(e);

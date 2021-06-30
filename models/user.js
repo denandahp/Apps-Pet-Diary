@@ -40,10 +40,10 @@ class UserModel {
         let status ;
         const res = await pool.query('SELECT * FROM' + dbViewprofile + 'where uid = $1 ',[uid_firebase]);
         if (res.rowCount > 0) {
-          if (res.rows[0].uid == uid_firebase){return {"status":"200", statususer:1, "message": `uid ${uid_firebase} sudah terdaftar`}}
+          if (res.rows[0].uid == uid_firebase){return {statususer:1, "message": `uid ${uid_firebase} sudah terdaftar`}}
           else{return status = '400'}
         } else {
-          return {"status":"400", statususer:0, "errors": `uid tidak terdaftar`}
+          return {statususer:0, "errors": `uid tidak terdaftar`}
         }
 
     }catch(ex){
@@ -163,7 +163,7 @@ class UserModel {
   async profilepet (pet_id) {
 
     let res;
-    if (pet_id === undefined) {
+    if (pet_id === 'all') {
       res = await pool.query('SELECT * from ' + dbPets + ' ORDER BY id ASC')
     } else {
       res = await pool.query('SELECT * from ' + dbPets + ' where id = $1 ORDER BY id ASC', [pet_id]);
@@ -187,7 +187,7 @@ class UserModel {
   async listpet (uid_user) {
     try{
       let res;
-      if (uid_user === undefined) {
+      if (uid_user === 'all') {
         res = await pool.query('SELECT pet_name, pet_type, pet_gender, age(pet_born) as age from ' + dbPets + ' ORDER BY uid_user ASC')
       } else {
         res = await pool.query('SELECT pet_name, pet_type, pet_gender, age(pet_born) as age from ' + dbPets + ' where uid_user = $1 ORDER BY uid_user ASC', [uid_user]);
