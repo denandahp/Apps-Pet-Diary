@@ -22,7 +22,7 @@ swaggerDocument = require('./swagger.json');
 
 
 const PORT = process.env.PORT || 3000;
-console.log(`Your port is ${PORT}`);
+console.log(`Your ports is ${PORT}`);
 
 server.listen(PORT, () => {
   debug('Server Started. *:%o', PORT);

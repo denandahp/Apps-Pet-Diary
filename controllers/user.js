@@ -95,6 +95,30 @@ class UserController {
     authUtils.processRequestWithJWT(req, callback, fallback);
   }
 
+  async checkdatauser(req, res, next) {
+    let callback = async () => {
+      res.locals.edit = true;
+      let uid = req.params.uid;
+      try {
+        let detail = await user.checkdatauser(uid);
+        if (detail.status == '400'){res.status(400).json({detail});}
+        else { res.status(200).json({detail});}
+
+      } catch (e) {
+        console.log(e);
+        let errorResponse = authUtils.processLoginError(e);
+        res.status(400).json({
+          errorResponse
+        });
+      }
+    };
+    let fallback = (err) => {
+      console.log(err);
+      next(err);
+    }
+    authUtils.processRequestWithJWT(req, callback, fallback);
+  }
+
   async register(req, res, next) {
     let callback = async () => {
       try {

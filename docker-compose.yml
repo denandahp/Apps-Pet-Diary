@@ -7,7 +7,7 @@ services:
         # build:
         #     context: .
         #     dockerfile: Dockerfile
-        image: denandahp/pet-diary-backend:0.0.1
+        image: denandahp/pet-diary-backend:0.0.2
         container_name: pet-diary-run
         env_file: .env
         environment:
@@ -28,3 +28,6 @@ services:
 
 networks:
    app:
+
+
+    

@@ -35,15 +35,15 @@ class UserModel {
     }
   }
 
-  async checkdatauser(data){
+  async checkdatauser(uid_firebase){
       try{
         let status ;
-        const res = await pool.query('SELECT * FROM' + dbViewprofile + 'where uid = $1 ',[data.uid_firebase]);
+        const res = await pool.query('SELECT * FROM' + dbViewprofile + 'where uid = $1 ',[uid_firebase]);
         if (res.rowCount > 0) {
-          if (res.rows[0].uid == data.uid_firebase){return {"status":"200", "errors": `uid ${data.uid_firebase} sudah terdaftar`}}
+          if (res.rows[0].uid == uid_firebase){return {"status":"200", statususer:1, "message": `uid ${uid_firebase} sudah terdaftar`}}
           else{return status = '400'}
         } else {
-          return status = '400'
+          return {"status":"400", statususer:0, "errors": `uid tidak terdaftar`}
         }
 
     }catch(ex){
