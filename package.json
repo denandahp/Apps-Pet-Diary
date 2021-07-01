@@ -10,6 +10,7 @@
   "author": "Duye Chen",
   "license": "MIT",
   "dependencies": {
+    "api-spec-transformer": "^0.2.6",
     "aws-sdk": "^2.830.0",
     "axios": "^0.21.1",
     "base64-to-image": "^1.0.2",

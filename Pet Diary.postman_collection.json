@@ -1,0 +1,829 @@
+{
+	"info": {
+		"_postman_id": "a0304d8c-a452-4b05-854f-e24e6246e310",
+		"name": "Pet Diary",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjhiMjFkNWE1Y2U2OGM1MjNlZTc0MzI5YjQ3ZDg0NGE3YmZjODRjZmYiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGVuYW5kYSBIZW5kcmEiLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EtL0FPaDE0R2lKMjNBckRfZy1ONmNrbmlHNkxaNlMzS19XUHV2UUR0TkhxYVVXUEE9czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcGV0b25lc2lhLXBldGRpYXJ5LXN0YWdpbmciLCJhdWQiOiJwZXRvbmVzaWEtcGV0ZGlhcnktc3RhZ2luZyIsImF1dGhfdGltZSI6MTYyNDk1NjA2MywidXNlcl9pZCI6IjFqZmZTS3VDTXVOalJ1STZWMUpsWFJwRWtheTIiLCJzdWIiOiIxamZmU0t1Q011TmpSdUk2VjFKbFhScEVrYXkyIiwiaWF0IjoxNjI1MDQ1OTM3LCJleHAiOjE2MjUwNDk1MzcsImVtYWlsIjoiZGVuYW5kYWhwQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7Imdvb2dsZS5jb20iOlsiMTE3NTg5NjEyNzU2MzU4NzQxNzEzIl0sImVtYWlsIjpbImRlbmFuZGFocEBnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.H3x0YlXhR2GKvfiTcNLeR7enqCDzN-zJzM2UqZpe1ZNZ0bo1owl-PHqJG31DCkfZ7l3AdUMBKVYuLe1mXHdvQfvqS2lyWKaFLc4l98qaTveQVMxKVe_s17wjBJ6hbmwsuYaZ2TBdilvJ7zo3loFVJg2CWc0nj1qdJlVMDE6uxfj_rK_fYWhze4vn-1GHXaA9r6nsHsEUXgeQeZvxK7LKPrXqvh0Chilam_OWRQs4vq1fizF4nRwk0By8PA7OBuGvt_M64psUFmypzvkp3bLK9gyrBav1kJXPpv8OpQxJrinyLkPaluT6o2hIuZWaO7LFjCX5pi9y4JMrrqRdD3sybA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"uid_firebase\":\"safw1fqfsavqevq\",\r\n    \"full_name\" :\"Cekepboy\",\r\n    \"phone\":\"082335506673\",\r\n    \"photo_path\": {\"photo1\":\"www.www\"},\r\n    \"email\":\"denandahp@gmail.com\",\r\n    \"type_auth\":\"GOOGLE\",\r\n    \"birthday\": \"1999-01-08\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/user/signup",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register with Firebase",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"full_name\" :\"denanda hendra\",\r\n    \"phone\":\"+6285877224401\",\r\n    \"photo_url\": \"https://static.wikia.nocookie.net/gundam/images/2/22/Narrative_Gundam_%28Front%29.png/revision/latest?cb=20190118041416\",\r\n    \"email\":\"denanda.hendra.p@mail.ugm.ac.id\",\r\n    \"password\":\"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/user/registerfirebase",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"registerfirebase"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Profile by Uid",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjhiMjFkNWE1Y2U2OGM1MjNlZTc0MzI5YjQ3ZDg0NGE3YmZjODRjZmYiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGVuYW5kYSBIZW5kcmEiLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EtL0FPaDE0R2lKMjNBckRfZy1ONmNrbmlHNkxaNlMzS19XUHV2UUR0TkhxYVVXUEE9czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcGV0b25lc2lhLXBldGRpYXJ5LXN0YWdpbmciLCJhdWQiOiJwZXRvbmVzaWEtcGV0ZGlhcnktc3RhZ2luZyIsImF1dGhfdGltZSI6MTYyNDk1NjA2MywidXNlcl9pZCI6IjFqZmZTS3VDTXVOalJ1STZWMUpsWFJwRWtheTIiLCJzdWIiOiIxamZmU0t1Q011TmpSdUk2VjFKbFhScEVrYXkyIiwiaWF0IjoxNjI1MDQ1OTM3LCJleHAiOjE2MjUwNDk1MzcsImVtYWlsIjoiZGVuYW5kYWhwQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7Imdvb2dsZS5jb20iOlsiMTE3NTg5NjEyNzU2MzU4NzQxNzEzIl0sImVtYWlsIjpbImRlbmFuZGFocEBnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.H3x0YlXhR2GKvfiTcNLeR7enqCDzN-zJzM2UqZpe1ZNZ0bo1owl-PHqJG31DCkfZ7l3AdUMBKVYuLe1mXHdvQfvqS2lyWKaFLc4l98qaTveQVMxKVe_s17wjBJ6hbmwsuYaZ2TBdilvJ7zo3loFVJg2CWc0nj1qdJlVMDE6uxfj_rK_fYWhze4vn-1GHXaA9r6nsHsEUXgeQeZvxK7LKPrXqvh0Chilam_OWRQs4vq1fizF4nRwk0By8PA7OBuGvt_M64psUFmypzvkp3bLK9gyrBav1kJXPpv8OpQxJrinyLkPaluT6o2hIuZWaO7LFjCX5pi9y4JMrrqRdD3sybA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/user/profile/safw1fqfsavqevq",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"profile",
+								"safw1fqfsavqevq"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Profile",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"uid_firebase\":\"1jffSKuCMuNjRuI6V1JlXRpEkay2\",\r\n    \"full_name\" :\"asengcoy\",\r\n    \"phone\":\"082335506673\",\r\n    \"photo_path\": {\"photo1\":\"wowowo.wowowow\"},\r\n    \"email\":\"denandahp@gmail.com\",\r\n    \"birthday\": \"1999-01-08\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/user/update/profile",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"update",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check Data Signup User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/user/signup/checkdata/safw1fqfsavqevq",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"signup",
+								"checkdata",
+								"safw1fqfsavqevq"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pet",
+			"item": [
+				{
+					"name": "Pet Data",
+					"item": [
+						{
+							"name": "Add Pet",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjhiMjFkNWE1Y2U2OGM1MjNlZTc0MzI5YjQ3ZDg0NGE3YmZjODRjZmYiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGVuYW5kYSBIZW5kcmEiLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EtL0FPaDE0R2lKMjNBckRfZy1ONmNrbmlHNkxaNlMzS19XUHV2UUR0TkhxYVVXUEE9czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcGV0b25lc2lhLXBldGRpYXJ5LXN0YWdpbmciLCJhdWQiOiJwZXRvbmVzaWEtcGV0ZGlhcnktc3RhZ2luZyIsImF1dGhfdGltZSI6MTYyNDk1NjA2MywidXNlcl9pZCI6IjFqZmZTS3VDTXVOalJ1STZWMUpsWFJwRWtheTIiLCJzdWIiOiIxamZmU0t1Q011TmpSdUk2VjFKbFhScEVrYXkyIiwiaWF0IjoxNjI1MDQ1OTM3LCJleHAiOjE2MjUwNDk1MzcsImVtYWlsIjoiZGVuYW5kYWhwQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7Imdvb2dsZS5jb20iOlsiMTE3NTg5NjEyNzU2MzU4NzQxNzEzIl0sImVtYWlsIjpbImRlbmFuZGFocEBnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.H3x0YlXhR2GKvfiTcNLeR7enqCDzN-zJzM2UqZpe1ZNZ0bo1owl-PHqJG31DCkfZ7l3AdUMBKVYuLe1mXHdvQfvqS2lyWKaFLc4l98qaTveQVMxKVe_s17wjBJ6hbmwsuYaZ2TBdilvJ7zo3loFVJg2CWc0nj1qdJlVMDE6uxfj_rK_fYWhze4vn-1GHXaA9r6nsHsEUXgeQeZvxK7LKPrXqvh0Chilam_OWRQs4vq1fizF4nRwk0By8PA7OBuGvt_M64psUFmypzvkp3bLK9gyrBav1kJXPpv8OpQxJrinyLkPaluT6o2hIuZWaO7LFjCX5pi9y4JMrrqRdD3sybA",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"uid_user\" :\"safw1fqfsavqevq\",\r\n    \"pet_name\":\"ipul 4\",\r\n    \"pet_born\": \"08-Jan-2015\",\r\n    \"pet_gender\":\"MALE\",\r\n    \"pet_bloodtype\":\"B\",\r\n    \"pet_weight\":\"10\",\r\n    \"pet_height\":\"30\",\r\n    \"pet_type\":\"PERSIA\",\r\n    \"pet_photo_path\": {\"photo1\":\"www.firestore\"}\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/pet/addpet",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"pet",
+										"addpet"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get List Pet by Uid",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjhiMjFkNWE1Y2U2OGM1MjNlZTc0MzI5YjQ3ZDg0NGE3YmZjODRjZmYiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGVuYW5kYSBIZW5kcmEiLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EtL0FPaDE0R2lKMjNBckRfZy1ONmNrbmlHNkxaNlMzS19XUHV2UUR0TkhxYVVXUEE9czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcGV0b25lc2lhLXBldGRpYXJ5LXN0YWdpbmciLCJhdWQiOiJwZXRvbmVzaWEtcGV0ZGlhcnktc3RhZ2luZyIsImF1dGhfdGltZSI6MTYyNDk1NjA2MywidXNlcl9pZCI6IjFqZmZTS3VDTXVOalJ1STZWMUpsWFJwRWtheTIiLCJzdWIiOiIxamZmU0t1Q011TmpSdUk2VjFKbFhScEVrYXkyIiwiaWF0IjoxNjI1MDQ1OTM3LCJleHAiOjE2MjUwNDk1MzcsImVtYWlsIjoiZGVuYW5kYWhwQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7Imdvb2dsZS5jb20iOlsiMTE3NTg5NjEyNzU2MzU4NzQxNzEzIl0sImVtYWlsIjpbImRlbmFuZGFocEBnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.H3x0YlXhR2GKvfiTcNLeR7enqCDzN-zJzM2UqZpe1ZNZ0bo1owl-PHqJG31DCkfZ7l3AdUMBKVYuLe1mXHdvQfvqS2lyWKaFLc4l98qaTveQVMxKVe_s17wjBJ6hbmwsuYaZ2TBdilvJ7zo3loFVJg2CWc0nj1qdJlVMDE6uxfj_rK_fYWhze4vn-1GHXaA9r6nsHsEUXgeQeZvxK7LKPrXqvh0Chilam_OWRQs4vq1fizF4nRwk0By8PA7OBuGvt_M64psUFmypzvkp3bLK9gyrBav1kJXPpv8OpQxJrinyLkPaluT6o2hIuZWaO7LFjCX5pi9y4JMrrqRdD3sybA",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/pet/list/safw1fqfsavqevqa",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"pet",
+										"list",
+										"safw1fqfsavqevqa"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Data Profil Pet by ID Pet",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImRjNGQwMGJjM2NiZWE4YjU0NTMzMWQxZjFjOTZmZDRlNjdjNTFlODkiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGVuYW5kYSBIZW5kcmEiLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EtL0FPaDE0R2lKMjNBckRfZy1ONmNrbmlHNkxaNlMzS19XUHV2UUR0TkhxYVVXUEE9czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcGV0b25lc2lhLXBldGRpYXJ5LXN0YWdpbmciLCJhdWQiOiJwZXRvbmVzaWEtcGV0ZGlhcnktc3RhZ2luZyIsImF1dGhfdGltZSI6MTYyMzkwOTU2OCwidXNlcl9pZCI6IjFqZmZTS3VDTXVOalJ1STZWMUpsWFJwRWtheTIiLCJzdWIiOiIxamZmU0t1Q011TmpSdUk2VjFKbFhScEVrYXkyIiwiaWF0IjoxNjI0MTQ0MjQyLCJleHAiOjE2MjQxNDc4NDIsImVtYWlsIjoiZGVuYW5kYWhwQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7Imdvb2dsZS5jb20iOlsiMTE3NTg5NjEyNzU2MzU4NzQxNzEzIl0sImVtYWlsIjpbImRlbmFuZGFocEBnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.FXSgHR88VDA3ReM-SuZuGVysZeBoK8FBQh2tcklSTIJw3AAsQDU7TD4wAvJ9eZ1VU7wHiVmh3by02ZlAmQd1-4w1Z8F9ryNIIvZOvU2jFbzEZLqtReBMQyDWQYSenNO_CQScLuiUpRfah7pGCVtiGRHNTZhDfP0s1kmf4VdEp7MPssV439gUtMxxarrG1svPRqCrbfqc1uHyo0hnu9yPcxMSgQyvBqoPGePPslP_xjYnEsWoh9SNqQ7NPpmB8O3Vf1i0pLQGcpd7yKvvBUS8ScCfS2sUNqLTLfutpr2PGB3knKEMpbO7kkSAOq3RBJj9jtawVNWrwzfEPk1SVdpclw",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/pet/profil/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"pet",
+										"profil",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Profil Pet",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImFiMGNiMTk5Zjg3MGYyOGUyOTg5YWI0ODFjYzJlNDdlMGUyY2MxOWQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiYWRlbiBoZW5kcmEiLCJwaWN0dXJlIjoiaHR0cHM6Ly9zdGF0aWMud2lraWEubm9jb29raWUubmV0L2d1bmRhbS9pbWFnZXMvMi8yMi9OYXJyYXRpdmVfR3VuZGFtXyUyOEZyb250JTI5LnBuZy9yZXZpc2lvbi9sYXRlc3Q_Y2I9MjAxOTAxMTgwNDE0MTYiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcGV0b25lc2lhLXBldGRpYXJ5LXN0YWdpbmciLCJhdWQiOiJwZXRvbmVzaWEtcGV0ZGlhcnktc3RhZ2luZyIsImF1dGhfdGltZSI6MTYyMzM4NTM5OCwidXNlcl9pZCI6IjFqZmZTS3VDTXVOalJ1STZWMUpsWFJwRWtheTIiLCJzdWIiOiIxamZmU0t1Q011TmpSdUk2VjFKbFhScEVrYXkyIiwiaWF0IjoxNjIzMzg1Mzk4LCJleHAiOjE2MjMzODg5OTgsImVtYWlsIjoiZGVuYW5kYWhwQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwicGhvbmVfbnVtYmVyIjoiKzYyODIzMzU1MDY2NzMiLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7InBob25lIjpbIis2MjgyMzM1NTA2NjczIl0sImVtYWlsIjpbImRlbmFuZGFocEBnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJwYXNzd29yZCJ9fQ.YIMwx0tlK6wFJETCEul5tWKP_eqD8DfAE9kvdYzJAjCMnVwzCrTUcgGvich2SdISSLHcHanmtWN91szN_rYtPBZTemrvQ9Tf36H1k_M0VYrIVJtRWxBOBVrf1sc1N9tpKoWZ6PM47WjY3h3PUxznCWghlUaJ27fXlsEh9f60dL84v4ZyCPftVv7pm89vsixjfzY76Js4qgBiIBn-CJZU_Z5IwQevzhnzOacDpH6MOYC2-R9LdzPP4E-CUJxOE_U7CUMl0PchgMidQwgICb2oiT7LABbvi-uBTe_Dj9S62_ez24rERl22-DlZ843VigF-ck8yIZ_umZ1z4SkSIQOlnw",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"uid_user\" :\"1jffSKuCMuNjRuI6V1JlXRpEkay2\",\r\n    \"pet_id\" :\"4\",\r\n    \"pet_name\":\"ipul ipul\",\r\n    \"pet_born\": \"08-Jan-2015\",\r\n    \"pet_gender\":\"MALE\",\r\n    \"pet_bloodtype\":\"B\",\r\n    \"pet_weight\":\"10\",\r\n    \"pet_height\":\"20\",\r\n    \"pet_type\":\"PERSIA\",\r\n    \"pet_photo_path\":\"www.firestore\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/pet/profil/updatepet",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"pet",
+										"profil",
+										"updatepet"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Pet From List By ID Pet",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImFiMGNiMTk5Zjg3MGYyOGUyOTg5YWI0ODFjYzJlNDdlMGUyY2MxOWQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiYWRlbiBoZW5kcmEiLCJwaWN0dXJlIjoiaHR0cHM6Ly9zdGF0aWMud2lraWEubm9jb29raWUubmV0L2d1bmRhbS9pbWFnZXMvMi8yMi9OYXJyYXRpdmVfR3VuZGFtXyUyOEZyb250JTI5LnBuZy9yZXZpc2lvbi9sYXRlc3Q_Y2I9MjAxOTAxMTgwNDE0MTYiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcGV0b25lc2lhLXBldGRpYXJ5LXN0YWdpbmciLCJhdWQiOiJwZXRvbmVzaWEtcGV0ZGlhcnktc3RhZ2luZyIsImF1dGhfdGltZSI6MTYyMzM4NTM5OCwidXNlcl9pZCI6IjFqZmZTS3VDTXVOalJ1STZWMUpsWFJwRWtheTIiLCJzdWIiOiIxamZmU0t1Q011TmpSdUk2VjFKbFhScEVrYXkyIiwiaWF0IjoxNjIzMzg1Mzk4LCJleHAiOjE2MjMzODg5OTgsImVtYWlsIjoiZGVuYW5kYWhwQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwicGhvbmVfbnVtYmVyIjoiKzYyODIzMzU1MDY2NzMiLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7InBob25lIjpbIis2MjgyMzM1NTA2NjczIl0sImVtYWlsIjpbImRlbmFuZGFocEBnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJwYXNzd29yZCJ9fQ.YIMwx0tlK6wFJETCEul5tWKP_eqD8DfAE9kvdYzJAjCMnVwzCrTUcgGvich2SdISSLHcHanmtWN91szN_rYtPBZTemrvQ9Tf36H1k_M0VYrIVJtRWxBOBVrf1sc1N9tpKoWZ6PM47WjY3h3PUxznCWghlUaJ27fXlsEh9f60dL84v4ZyCPftVv7pm89vsixjfzY76Js4qgBiIBn-CJZU_Z5IwQevzhnzOacDpH6MOYC2-R9LdzPP4E-CUJxOE_U7CUMl0PchgMidQwgICb2oiT7LABbvi-uBTe_Dj9S62_ez24rERl22-DlZ843VigF-ck8yIZ_umZ1z4SkSIQOlnw",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/pet/profil/deletepet/5",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"pet",
+										"profil",
+										"deletepet",
+										"5"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Note",
+					"item": [
+						{
+							"name": "Add Note Pet",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"pet_id\" : 4,\r\n    \"pet_height\" : 40,\r\n    \"pet_weight\" : 60,\r\n    \"pet_temperature\" : 37,\r\n    \"pet_note\" : \"Gaada penyakit bro\",\r\n    \"pet_photo\" : { \r\n        \"photo1\" : \"wwww.photo1\",\r\n        \"photo2\" : \"wwww.photo2\",\r\n        \"photo3\" : \"wwww.photo3\"\r\n        \r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/pet/add/note",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"pet",
+										"add",
+										"note"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Note Pet",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_note\": 3,\r\n    \"pet_id\" : 4,\r\n    \"pet_height\" : 10,\r\n    \"pet_weight\" : 30,\r\n    \"pet_temperature\" : 37,\r\n    \"pet_note\" : \"Gaada penyakit bro\",\r\n    \"pet_photo\" : { \r\n        \"photo1\" : \"wwww.photo1\",\r\n        \"photo2\" : \"wwww.photo2\",\r\n        \"photo3\" : \"wwww.photo3\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/pet/update/note",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"pet",
+										"update",
+										"note"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get List Note Pet",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/pet/list/note/3/2",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"pet",
+										"list",
+										"note",
+										"3",
+										"2"
+									]
+								},
+								"description": "Get All note All User\n{{base_url}}/api/pet/list/note/all/all\n\nGet All note by Pet ID\n{{base_url}}/api/pet/list/note/3/all\n\nGet Note by Pet ID and Note ID\n{{base_url}}/api/pet/list/note/3/2"
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Note Pet by Id Note",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/pet/delete/note/2",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"pet",
+										"delete",
+										"note",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Medical Chekcup Date",
+					"item": [
+						{
+							"name": "Add Medical Chekcup Date Pet",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"pet_id\" : 4,\r\n    \"pet_checkup_date\": \"1999-01-08 16:00\",\r\n    \"pet_note\" : \"Gaada penyakit bro\",\r\n    \"pet_photo\" : { \r\n        \"photo1\" : \"wwww.photo1\",\r\n        \"photo2\" : \"wwww.photo2\",\r\n        \"photo3\" : \"wwww.photo3\"\r\n        \r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/pet/add/checkupdate",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"pet",
+										"add",
+										"checkupdate"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"pet_id\" : 4,\r\n    \"pet_checkup_date\": \"1999-01-08 16:00\",\r\n    \"pet_note\" : \"Gaada penyakit bro\",\r\n    \"pet_photo\" : { \r\n        \"photo1\" : \"wwww.photo1\",\r\n        \"photo2\" : \"wwww.photo2\",\r\n        \"photo3\" : \"wwww.photo3\"\r\n        \r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/api/pet/add/checkupdate",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"api",
+												"pet",
+												"add",
+												"checkupdate"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "408"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"198-/X04XCicydCy0XFsgpYNOIk6XO0\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 21 Jun 2021 03:51:57 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Add Medical Checkup Date Successfully!\",\n    \"detail\": {\n        \"id\": 7,\n        \"pet_id\": 4,\n        \"pet_checkup_date\": \"1999-01-08T09:00:00.000Z\",\n        \"pet_weight\": null,\n        \"pet_height\": null,\n        \"pet_temperature\": null,\n        \"checkup_description\": null,\n        \"created_at\": \"2021-06-21T03:51:56.390Z\",\n        \"updated_at\": \"2021-06-21T03:51:56.390Z\",\n        \"pet_photo\": {\n            \"photo1\": \"wwww.photo1\",\n            \"photo2\": \"wwww.photo2\",\n            \"photo3\": \"wwww.photo3\"\n        },\n        \"pet_note\": \"Gaada penyakit bro\"\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "Update Medical Chekcup Date Pet",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_note\": 7,\r\n    \"pet_id\" : 4,\r\n    \"pet_checkup_date\": \"1999-01-08 18:00\",\r\n    \"pet_note\" : \"AMAN\",\r\n    \"pet_photo\" : { \r\n        \"photo1\" : \"wwww.photo1\",\r\n        \"photo2\" : \"wwww.photo2\",\r\n        \"photo3\" : \"wwww.photo3\"\r\n        \r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/pet/update/checkupdate",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"pet",
+										"update",
+										"checkupdate"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"id_note\": 7,\r\n    \"pet_id\" : 4,\r\n    \"pet_checkup_date\": \"1999-01-08 18:00\",\r\n    \"pet_note\" : \"AMAN\",\r\n    \"pet_photo\" : { \r\n        \"photo1\" : \"wwww.photo1\",\r\n        \"photo2\" : \"wwww.photo2\",\r\n        \"photo3\" : \"wwww.photo3\"\r\n        \r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/api/pet/update/checkupdate",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"api",
+												"pet",
+												"update",
+												"checkupdate"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "397"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"18d-DBSTb+6vwdFWLzgNlzmEj/UXkWI\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 21 Jun 2021 03:56:23 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Update Medical Checkup Date Successfully!\",\n    \"detail\": {\n        \"id\": 7,\n        \"pet_id\": 4,\n        \"pet_checkup_date\": \"1999-01-08T11:00:00.000Z\",\n        \"pet_weight\": null,\n        \"pet_height\": null,\n        \"pet_temperature\": null,\n        \"checkup_description\": null,\n        \"created_at\": \"2021-06-21T03:51:56.390Z\",\n        \"updated_at\": \"2021-06-21T03:56:22.067Z\",\n        \"pet_photo\": {\n            \"photo1\": \"wwww.photo1\",\n            \"photo2\": \"wwww.photo2\",\n            \"photo3\": \"wwww.photo3\"\n        },\n        \"pet_note\": \"AMAN\"\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "Get List Medical Chekcup Date Pet",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/pet/list/checkupdate/4/all",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"pet",
+										"list",
+										"checkupdate",
+										"4",
+										"all"
+									]
+								},
+								"description": "Get All note All User\n{{base_url}}/api/pet/list/checkupdate/all/all\n\nGet All note by Pet ID\n{{base_url}}/api/pet/list/checkupdate/3/all\n\nGet Note by Pet ID and Note ID\n{{base_url}}/api/pet/list/checkupdate/3/2"
+							},
+							"response": [
+								{
+									"name": "Note By Pet Id and Note Id",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/api/pet/list/checkupdate/4/7",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"api",
+												"pet",
+												"list",
+												"checkupdate",
+												"4",
+												"7"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "219"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"db-YzonvaTXqY0X0nzKErw06vUsvmk\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 21 Jun 2021 03:59:07 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"detail\": [\n        {\n            \"id\": 7,\n            \"pet_id\": 4,\n            \"pet_checkup_date\": \"1999-01-08T11:00:00.000Z\",\n            \"pet_note\": \"AMAN\",\n            \"pet_photo\": {\n                \"photo1\": \"wwww.photo1\",\n                \"photo2\": \"wwww.photo2\",\n                \"photo3\": \"wwww.photo3\"\n            },\n            \"updated_at\": \"2021-06-21T03:56:22.067Z\"\n        }\n    ]\n}"
+								},
+								{
+									"name": "Get All Note By Pet Id",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/api/pet/list/checkupdate/4/all",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"api",
+												"pet",
+												"list",
+												"checkupdate",
+												"4",
+												"all"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "440"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"1b8-qGB0P6MTXN7pQpXNkRXRScWnyQY\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 21 Jun 2021 04:00:41 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"detail\": [\n        {\n            \"id\": 6,\n            \"pet_id\": 4,\n            \"pet_checkup_date\": \"1999-01-08T08:00:00.000Z\",\n            \"pet_note\": \"Gaada penyakit bro\",\n            \"pet_photo\": {\n                \"photo1\": \"wwww.photo1\",\n                \"photo2\": \"wwww.photo2\",\n                \"photo3\": \"wwww.photo3\"\n            },\n            \"updated_at\": \"2021-06-21T03:47:39.275Z\"\n        },\n        {\n            \"id\": 7,\n            \"pet_id\": 4,\n            \"pet_checkup_date\": \"1999-01-08T11:00:00.000Z\",\n            \"pet_note\": \"AMAN\",\n            \"pet_photo\": {\n                \"photo1\": \"wwww.photo1\",\n                \"photo2\": \"wwww.photo2\",\n                \"photo3\": \"wwww.photo3\"\n            },\n            \"updated_at\": \"2021-06-21T03:56:22.067Z\"\n        }\n    ]\n}"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Firebase Testing",
+			"item": [
+				{
+					"name": "Test Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"denandahp@gmail.com\",\r\n    \"password\":\"123456\",\r\n    \"returnSecureToken\":true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBD20Z6DFLbyUWbEPTwmLhNbMc5bo2HWlY",
+							"protocol": "https",
+							"host": [
+								"identitytoolkit",
+								"googleapis",
+								"com"
+							],
+							"path": [
+								"v1",
+								"accounts:signInWithPassword"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "AIzaSyBD20Z6DFLbyUWbEPTwmLhNbMc5bo2HWlY"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

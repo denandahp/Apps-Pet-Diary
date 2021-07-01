@@ -1,7 +1,10 @@
-//const database = require('../configs.json').database;
+let database;
 const dotenv = require('dotenv');
 dotenv.config();
-const database = {
+if (process.env.POSTGRES_USER == undefined) {
+   database = require('../configs.json').database;
+}else{
+   database = {
     user : process.env.POSTGRES_USER,
     host: process.env.POSTGRES_HOST,
     database: process.env.POSTGRES_DATABASE,
@@ -9,7 +12,10 @@ const database = {
     sslmode: process.env.POSTGRES_SSLMODE,
     post: process.env.POSTGRES_PORT
   };
-  console.log(database);
+}
+
+
+console.log(database);
 
 const { Pool } = require('pg');
 

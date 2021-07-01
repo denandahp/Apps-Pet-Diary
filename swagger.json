@@ -1,22 +1,1529 @@
 {
-    "swagger": "2.0",
-    "info": {
-      "version": "1.0.0",
-      "title": "Pet Diary",
-      "description": "Pet Diary",
-      "license": {
-        "name": "Pet Diary"
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "Pet Diary",
+    "contact": {}
+  },
+  "host": "example.com",
+  "basePath": "/api",
+  "securityDefinitions": {},
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/user/signup": {
+      "post": {
+        "summary": "Register User",
+        "tags": [
+          "User"
+        ],
+        "operationId": "RegisterUser",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/RegisterUserRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
       }
     },
-    "host": "localhost:3000",
-    "basePath": "/",
-    "tags": [
-      {
-        "name": "Users",
-        "description": "API for users in the system"
+    "/user/registerfirebase": {
+      "post": {
+        "summary": "Register with Firebase",
+        "tags": [
+          "User"
+        ],
+        "operationId": "RegisterwithFirebase",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/RegisterwithFirebaseRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
       }
-    ],
-    "schemes": ["http"],
-    "consumes": ["application/json"],
-    "produces": ["application/json"]
-  }
+    },
+    "/user/profile/safw1fqfsavqevq": {
+      "get": {
+        "summary": "Get Profile by Uid",
+        "tags": [
+          "User"
+        ],
+        "operationId": "GetProfilebyUid",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/user/update/profile": {
+      "put": {
+        "summary": "Update Profile",
+        "tags": [
+          "User"
+        ],
+        "operationId": "UpdateProfile",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UpdateProfileRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/user/signup/checkdata/safw1fqfsavqevq": {
+      "get": {
+        "summary": "Check Data Signup User",
+        "tags": [
+          "User"
+        ],
+        "operationId": "CheckDataSignupUser",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/pet/addpet": {
+      "post": {
+        "summary": "Add Pet",
+        "tags": [
+          "Pet Data"
+        ],
+        "operationId": "AddPet",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/AddPetRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/pet/list/safw1fqfsavqevqa": {
+      "get": {
+        "summary": "Get List Pet by Uid",
+        "tags": [
+          "Pet Data"
+        ],
+        "operationId": "GetListPetbyUid",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/pet/profil/3": {
+      "get": {
+        "summary": "Get Data Profil Pet by ID Pet",
+        "tags": [
+          "Pet Data"
+        ],
+        "operationId": "GetDataProfilPetbyIDPet",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/pet/profil/updatepet": {
+      "put": {
+        "summary": "Update Profil Pet",
+        "tags": [
+          "Pet Data"
+        ],
+        "operationId": "UpdateProfilPet",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UpdateProfilPetRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/pet/profil/deletepet/5": {
+      "delete": {
+        "summary": "Delete Pet From List By ID Pet",
+        "tags": [
+          "Pet Data"
+        ],
+        "operationId": "DeletePetFromListByIDPet",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/pet/add/note": {
+      "post": {
+        "summary": "Add Note Pet",
+        "tags": [
+          "Note"
+        ],
+        "operationId": "AddNotePet",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/AddNotePetRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/pet/update/note": {
+      "put": {
+        "summary": "Update Note Pet",
+        "tags": [
+          "Note"
+        ],
+        "operationId": "UpdateNotePet",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UpdateNotePetRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/pet/list/note/3/2": {
+      "get": {
+        "description": "Get All note All User\n{{base_url}}/api/pet/list/note/all/all\n\nGet All note by Pet ID\n{{base_url}}/api/pet/list/note/3/all\n\nGet Note by Pet ID and Note ID\n{{base_url}}/api/pet/list/note/3/2",
+        "summary": "Get List Note Pet",
+        "tags": [
+          "Note"
+        ],
+        "operationId": "GetListNotePet",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/pet/delete/note/2": {
+      "delete": {
+        "summary": "Delete Note Pet by Id Note",
+        "tags": [
+          "Note"
+        ],
+        "operationId": "DeleteNotePetbyIdNote",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/pet/add/checkupdate": {
+      "post": {
+        "summary": "Add Medical Chekcup Date Pet",
+        "tags": [
+          "Medical Chekcup Date"
+        ],
+        "operationId": "AddMedicalChekcupDatePet",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/AddMedicalChekcupDatePetRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/m200"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "message": "Add Medical Checkup Date Successfully!",
+                "detail": {
+                  "id": 7,
+                  "pet_id": 4,
+                  "pet_checkup_date": "1999-01-08T09:00:00Z",
+                  "pet_weight": null,
+                  "pet_height": null,
+                  "pet_temperature": null,
+                  "checkup_description": null,
+                  "created_at": "2021-06-21T03:51:56.39Z",
+                  "updated_at": "2021-06-21T03:51:56.39Z",
+                  "pet_photo": {
+                    "photo1": "wwww.photo1",
+                    "photo2": "wwww.photo2",
+                    "photo3": "wwww.photo3"
+                  },
+                  "pet_note": "Gaada penyakit bro"
+                }
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "408"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"198-/X04XCicydCy0XFsgpYNOIk6XO0\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Mon, 21 Jun 2021 03:51:57 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pet/update/checkupdate": {
+      "put": {
+        "summary": "Update Medical Chekcup Date Pet",
+        "tags": [
+          "Medical Chekcup Date"
+        ],
+        "operationId": "UpdateMedicalChekcupDatePet",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UpdateMedicalChekcupDatePetRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/m200"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "message": "Update Medical Checkup Date Successfully!",
+                "detail": {
+                  "id": 7,
+                  "pet_id": 4,
+                  "pet_checkup_date": "1999-01-08T11:00:00Z",
+                  "pet_weight": null,
+                  "pet_height": null,
+                  "pet_temperature": null,
+                  "checkup_description": null,
+                  "created_at": "2021-06-21T03:51:56.39Z",
+                  "updated_at": "2021-06-21T03:56:22.067Z",
+                  "pet_photo": {
+                    "photo1": "wwww.photo1",
+                    "photo2": "wwww.photo2",
+                    "photo3": "wwww.photo3"
+                  },
+                  "pet_note": "AMAN"
+                }
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "397"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"18d-DBSTb+6vwdFWLzgNlzmEj/UXkWI\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Mon, 21 Jun 2021 03:56:23 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pet/list/checkupdate/4/all": {
+      "get": {
+        "description": "Get All note All User\n{{base_url}}/api/pet/list/checkupdate/all/all\n\nGet All note by Pet ID\n{{base_url}}/api/pet/list/checkupdate/3/all\n\nGet Note by Pet ID and Note ID\n{{base_url}}/api/pet/list/checkupdate/3/2",
+        "summary": "Get List Medical Chekcup Date Pet",
+        "tags": [
+          "Medical Chekcup Date"
+        ],
+        "operationId": "GetListMedicalChekcupDatePet",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/NoteByPetIdandNoteId"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "detail": [
+                  {
+                    "id": 7,
+                    "pet_id": 4,
+                    "pet_checkup_date": "1999-01-08T11:00:00Z",
+                    "pet_note": "AMAN",
+                    "pet_photo": {
+                      "photo1": "wwww.photo1",
+                      "photo2": "wwww.photo2",
+                      "photo3": "wwww.photo3"
+                    },
+                    "updated_at": "2021-06-21T03:56:22.067Z"
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "219"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"db-YzonvaTXqY0X0nzKErw06vUsvmk\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Mon, 21 Jun 2021 03:59:07 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/accounts:signInWithPassword": {
+      "post": {
+        "summary": "Test Login",
+        "tags": [
+          "Firebase Testing"
+        ],
+        "operationId": "TestLogin",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "key",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/TestLoginRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "RegisterUserRequest": {
+      "title": "RegisterUserRequest",
+      "example": {
+        "uid_firebase": "safw1fqfsavqevq",
+        "full_name": "Cekepboy",
+        "phone": "082335506673",
+        "photo_path": {
+          "photo1": "www.www"
+        },
+        "email": "denandahp@gmail.com",
+        "type_auth": "GOOGLE",
+        "birthday": "1999-01-08"
+      },
+      "type": "object",
+      "properties": {
+        "uid_firebase": {
+          "type": "string"
+        },
+        "full_name": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "photo_path": {
+          "$ref": "#/definitions/PhotoPath"
+        },
+        "email": {
+          "type": "string"
+        },
+        "type_auth": {
+          "type": "string"
+        },
+        "birthday": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "uid_firebase",
+        "full_name",
+        "phone",
+        "photo_path",
+        "email",
+        "type_auth",
+        "birthday"
+      ]
+    },
+    "PhotoPath": {
+      "title": "PhotoPath",
+      "example": {
+        "photo1": "www.www"
+      },
+      "type": "object",
+      "properties": {
+        "photo1": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "photo1"
+      ]
+    },
+    "RegisterwithFirebaseRequest": {
+      "title": "RegisterwithFirebaseRequest",
+      "example": {
+        "full_name": "denanda hendra",
+        "phone": "+6285877224401",
+        "photo_url": "https://static.wikia.nocookie.net/gundam/images/2/22/Narrative_Gundam_%28Front%29.png/revision/latest?cb=20190118041416",
+        "email": "denanda.hendra.p@mail.ugm.ac.id",
+        "password": "123456"
+      },
+      "type": "object",
+      "properties": {
+        "full_name": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "photo_url": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "full_name",
+        "phone",
+        "photo_url",
+        "email",
+        "password"
+      ]
+    },
+    "UpdateProfileRequest": {
+      "title": "UpdateProfileRequest",
+      "example": {
+        "uid_firebase": "1jffSKuCMuNjRuI6V1JlXRpEkay2",
+        "full_name": "asengcoy",
+        "phone": "082335506673",
+        "photo_path": {
+          "photo1": "wowowo.wowowow"
+        },
+        "email": "denandahp@gmail.com",
+        "birthday": "1999-01-08"
+      },
+      "type": "object",
+      "properties": {
+        "uid_firebase": {
+          "type": "string"
+        },
+        "full_name": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "photo_path": {
+          "$ref": "#/definitions/PhotoPath"
+        },
+        "email": {
+          "type": "string"
+        },
+        "birthday": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "uid_firebase",
+        "full_name",
+        "phone",
+        "photo_path",
+        "email",
+        "birthday"
+      ]
+    },
+    "AddPetRequest": {
+      "title": "AddPetRequest",
+      "example": {
+        "uid_user": "safw1fqfsavqevq",
+        "pet_name": "ipul 4",
+        "pet_born": "08-Jan-2015",
+        "pet_gender": "MALE",
+        "pet_bloodtype": "B",
+        "pet_weight": "10",
+        "pet_height": "30",
+        "pet_type": "PERSIA",
+        "pet_photo_path": {
+          "photo1": "www.firestore"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "uid_user": {
+          "type": "string"
+        },
+        "pet_name": {
+          "type": "string"
+        },
+        "pet_born": {
+          "type": "string"
+        },
+        "pet_gender": {
+          "type": "string"
+        },
+        "pet_bloodtype": {
+          "type": "string"
+        },
+        "pet_weight": {
+          "type": "string"
+        },
+        "pet_height": {
+          "type": "string"
+        },
+        "pet_type": {
+          "type": "string"
+        },
+        "pet_photo_path": {
+          "$ref": "#/definitions/PetPhotoPath"
+        }
+      },
+      "required": [
+        "uid_user",
+        "pet_name",
+        "pet_born",
+        "pet_gender",
+        "pet_bloodtype",
+        "pet_weight",
+        "pet_height",
+        "pet_type",
+        "pet_photo_path"
+      ]
+    },
+    "PetPhotoPath": {
+      "title": "PetPhotoPath",
+      "example": {
+        "photo1": "www.firestore"
+      },
+      "type": "object",
+      "properties": {
+        "photo1": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "photo1"
+      ]
+    },
+    "UpdateProfilPetRequest": {
+      "title": "UpdateProfilPetRequest",
+      "example": {
+        "uid_user": "1jffSKuCMuNjRuI6V1JlXRpEkay2",
+        "pet_id": "4",
+        "pet_name": "ipul ipul",
+        "pet_born": "08-Jan-2015",
+        "pet_gender": "MALE",
+        "pet_bloodtype": "B",
+        "pet_weight": "10",
+        "pet_height": "20",
+        "pet_type": "PERSIA",
+        "pet_photo_path": "www.firestore"
+      },
+      "type": "object",
+      "properties": {
+        "uid_user": {
+          "type": "string"
+        },
+        "pet_id": {
+          "type": "string"
+        },
+        "pet_name": {
+          "type": "string"
+        },
+        "pet_born": {
+          "type": "string"
+        },
+        "pet_gender": {
+          "type": "string"
+        },
+        "pet_bloodtype": {
+          "type": "string"
+        },
+        "pet_weight": {
+          "type": "string"
+        },
+        "pet_height": {
+          "type": "string"
+        },
+        "pet_type": {
+          "type": "string"
+        },
+        "pet_photo_path": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "uid_user",
+        "pet_id",
+        "pet_name",
+        "pet_born",
+        "pet_gender",
+        "pet_bloodtype",
+        "pet_weight",
+        "pet_height",
+        "pet_type",
+        "pet_photo_path"
+      ]
+    },
+    "AddNotePetRequest": {
+      "title": "AddNotePetRequest",
+      "example": {
+        "pet_id": 4,
+        "pet_height": 40,
+        "pet_weight": 60,
+        "pet_temperature": 37,
+        "pet_note": "Gaada penyakit bro",
+        "pet_photo": {
+          "photo1": "wwww.photo1",
+          "photo2": "wwww.photo2",
+          "photo3": "wwww.photo3"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "pet_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pet_height": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pet_weight": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pet_temperature": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pet_note": {
+          "type": "string"
+        },
+        "pet_photo": {
+          "$ref": "#/definitions/PetPhoto"
+        }
+      },
+      "required": [
+        "pet_id",
+        "pet_height",
+        "pet_weight",
+        "pet_temperature",
+        "pet_note",
+        "pet_photo"
+      ]
+    },
+    "PetPhoto": {
+      "title": "PetPhoto",
+      "example": {
+        "photo1": "wwww.photo1",
+        "photo2": "wwww.photo2",
+        "photo3": "wwww.photo3"
+      },
+      "type": "object",
+      "properties": {
+        "photo1": {
+          "type": "string"
+        },
+        "photo2": {
+          "type": "string"
+        },
+        "photo3": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "photo1",
+        "photo2",
+        "photo3"
+      ]
+    },
+    "UpdateNotePetRequest": {
+      "title": "UpdateNotePetRequest",
+      "example": {
+        "id_note": 3,
+        "pet_id": 4,
+        "pet_height": 10,
+        "pet_weight": 30,
+        "pet_temperature": 37,
+        "pet_note": "Gaada penyakit bro",
+        "pet_photo": {
+          "photo1": "wwww.photo1",
+          "photo2": "wwww.photo2",
+          "photo3": "wwww.photo3"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "id_note": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pet_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pet_height": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pet_weight": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pet_temperature": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pet_note": {
+          "type": "string"
+        },
+        "pet_photo": {
+          "$ref": "#/definitions/PetPhoto"
+        }
+      },
+      "required": [
+        "id_note",
+        "pet_id",
+        "pet_height",
+        "pet_weight",
+        "pet_temperature",
+        "pet_note",
+        "pet_photo"
+      ]
+    },
+    "AddMedicalChekcupDatePetRequest": {
+      "title": "AddMedicalChekcupDatePetRequest",
+      "example": {
+        "pet_id": 4,
+        "pet_checkup_date": "1999-01-08 16:00",
+        "pet_note": "Gaada penyakit bro",
+        "pet_photo": {
+          "photo1": "wwww.photo1",
+          "photo2": "wwww.photo2",
+          "photo3": "wwww.photo3"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "pet_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pet_checkup_date": {
+          "type": "string"
+        },
+        "pet_note": {
+          "type": "string"
+        },
+        "pet_photo": {
+          "$ref": "#/definitions/PetPhoto"
+        }
+      },
+      "required": [
+        "pet_id",
+        "pet_checkup_date",
+        "pet_note",
+        "pet_photo"
+      ]
+    },
+    "m200": {
+      "title": "m200",
+      "example": {
+        "message": "Add Medical Checkup Date Successfully!",
+        "detail": {
+          "id": 7,
+          "pet_id": 4,
+          "pet_checkup_date": "1999-01-08T09:00:00Z",
+          "pet_weight": null,
+          "pet_height": null,
+          "pet_temperature": null,
+          "checkup_description": null,
+          "created_at": "2021-06-21T03:51:56.39Z",
+          "updated_at": "2021-06-21T03:51:56.39Z",
+          "pet_photo": {
+            "photo1": "wwww.photo1",
+            "photo2": "wwww.photo2",
+            "photo3": "wwww.photo3"
+          },
+          "pet_note": "Gaada penyakit bro"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "detail": {
+          "$ref": "#/definitions/Detail"
+        }
+      },
+      "required": [
+        "message",
+        "detail"
+      ]
+    },
+    "Detail": {
+      "title": "Detail",
+      "example": {
+        "id": 7,
+        "pet_id": 4,
+        "pet_checkup_date": "1999-01-08T09:00:00Z",
+        "pet_weight": null,
+        "pet_height": null,
+        "pet_temperature": null,
+        "checkup_description": null,
+        "created_at": "2021-06-21T03:51:56.39Z",
+        "updated_at": "2021-06-21T03:51:56.39Z",
+        "pet_photo": {
+          "photo1": "wwww.photo1",
+          "photo2": "wwww.photo2",
+          "photo3": "wwww.photo3"
+        },
+        "pet_note": "Gaada penyakit bro"
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pet_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pet_checkup_date": {
+          "type": "string"
+        },
+        "pet_weight": {
+          "type": "string"
+        },
+        "pet_height": {
+          "type": "string"
+        },
+        "pet_temperature": {
+          "type": "string"
+        },
+        "checkup_description": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        },
+        "pet_photo": {
+          "$ref": "#/definitions/PetPhoto"
+        },
+        "pet_note": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "pet_id",
+        "pet_checkup_date",
+        "pet_weight",
+        "pet_height",
+        "pet_temperature",
+        "checkup_description",
+        "created_at",
+        "updated_at",
+        "pet_photo",
+        "pet_note"
+      ]
+    },
+    "UpdateMedicalChekcupDatePetRequest": {
+      "title": "UpdateMedicalChekcupDatePetRequest",
+      "example": {
+        "id_note": 7,
+        "pet_id": 4,
+        "pet_checkup_date": "1999-01-08 18:00",
+        "pet_note": "AMAN",
+        "pet_photo": {
+          "photo1": "wwww.photo1",
+          "photo2": "wwww.photo2",
+          "photo3": "wwww.photo3"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "id_note": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pet_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pet_checkup_date": {
+          "type": "string"
+        },
+        "pet_note": {
+          "type": "string"
+        },
+        "pet_photo": {
+          "$ref": "#/definitions/PetPhoto"
+        }
+      },
+      "required": [
+        "id_note",
+        "pet_id",
+        "pet_checkup_date",
+        "pet_note",
+        "pet_photo"
+      ]
+    },
+    "NoteByPetIdandNoteId": {
+      "title": "NoteByPetIdandNoteId",
+      "example": {
+        "detail": [
+          {
+            "id": 7,
+            "pet_id": 4,
+            "pet_checkup_date": "1999-01-08T11:00:00Z",
+            "pet_note": "AMAN",
+            "pet_photo": {
+              "photo1": "wwww.photo1",
+              "photo2": "wwww.photo2",
+              "photo3": "wwww.photo3"
+            },
+            "updated_at": "2021-06-21T03:56:22.067Z"
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "detail": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Detail2"
+          }
+        }
+      },
+      "required": [
+        "detail"
+      ]
+    },
+    "Detail2": {
+      "title": "Detail2",
+      "example": {
+        "id": 7,
+        "pet_id": 4,
+        "pet_checkup_date": "1999-01-08T11:00:00Z",
+        "pet_note": "AMAN",
+        "pet_photo": {
+          "photo1": "wwww.photo1",
+          "photo2": "wwww.photo2",
+          "photo3": "wwww.photo3"
+        },
+        "updated_at": "2021-06-21T03:56:22.067Z"
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pet_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pet_checkup_date": {
+          "type": "string"
+        },
+        "pet_note": {
+          "type": "string"
+        },
+        "pet_photo": {
+          "$ref": "#/definitions/PetPhoto"
+        },
+        "updated_at": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "pet_id",
+        "pet_checkup_date",
+        "pet_note",
+        "pet_photo",
+        "updated_at"
+      ]
+    },
+    "GetAllNoteByPetId": {
+      "title": "GetAllNoteByPetId",
+      "example": {
+        "detail": [
+          {
+            "id": 6,
+            "pet_id": 4,
+            "pet_checkup_date": "1999-01-08T08:00:00Z",
+            "pet_note": "Gaada penyakit bro",
+            "pet_photo": {
+              "photo1": "wwww.photo1",
+              "photo2": "wwww.photo2",
+              "photo3": "wwww.photo3"
+            },
+            "updated_at": "2021-06-21T03:47:39.275Z"
+          },
+          {
+            "id": 7,
+            "pet_id": 4,
+            "pet_checkup_date": "1999-01-08T11:00:00Z",
+            "pet_note": "AMAN",
+            "pet_photo": {
+              "photo1": "wwww.photo1",
+              "photo2": "wwww.photo2",
+              "photo3": "wwww.photo3"
+            },
+            "updated_at": "2021-06-21T03:56:22.067Z"
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "detail": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Detail2"
+          }
+        }
+      },
+      "required": [
+        "detail"
+      ]
+    },
+    "TestLoginRequest": {
+      "title": "TestLoginRequest",
+      "example": {
+        "email": "denandahp@gmail.com",
+        "password": "123456",
+        "returnSecureToken": true
+      },
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "returnSecureToken": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "email",
+        "password",
+        "returnSecureToken"
+      ]
+    }
+  },
+  "tags": [
+    {
+      "name": "User"
+    },
+    {
+      "name": "Pet Data"
+    },
+    {
+      "name": "Note"
+    },
+    {
+      "name": "Medical Chekcup Date"
+    },
+    {
+      "name": "Firebase Testing"
+    }
+  ]
+}
