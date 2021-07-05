@@ -77,6 +77,7 @@ class UserController {
       let uid = req.params.uid;
       try {
         let detail = await user.getprofile(uid);
+       
         if (detail.status == '400'){res.status(400).json({detail});}
         else { res.status(200).json({detail});}
 
@@ -89,6 +90,7 @@ class UserController {
       }
     };
     let fallback = (err) => {
+    
       console.log(err);
       next(err);
     }

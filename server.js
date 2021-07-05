@@ -14,6 +14,25 @@ const cors = require('cors');
 const admin = require('./config/firebase_config.js')
 const dotenv = require('dotenv');
 
+//Sentry tracking
+const Sentry = require("@sentry/node");
+const Tracing = require("@sentry/tracing");
+
+Sentry.init({
+  dsn: "https://e050249671f741d199d97e2d9f7ebcbd@o911947.ingest.sentry.io/5848527",
+  integrations: [
+    // enable HTTP calls tracing
+    new Sentry.Integrations.Http({ tracing: true }),
+    // enable Express.js middleware tracing
+    new Tracing.Integrations.Express({ app }),
+  ],
+
+  // Set tracesSampleRate to 1.0 to capture 100%
+  // of transactions for performance monitoring.
+  // We recommend adjusting this value in production
+  tracesSampleRate: 1.0,
+});
+
 
 dotenv.config();
      
@@ -85,6 +104,24 @@ app.use(function LocalsMiddleware(req, res, next) {
   next();
 });
 
+// RequestHandler creates a separate execution context using domains, so that every
+// transaction/span/breadcrumb is attached to its own Hub instance
+app.use(Sentry.Handlers.requestHandler());
+// TracingHandler creates a trace for every incoming request
+app.use(Sentry.Handlers.tracingHandler());
+
+// All controllers should live here
+app.get("/", function rootHandler(req, res) {
+  res.end("Hello world!");
+});
+
+// The error handler must be before any other error middleware and after all controllers
+app.use(Sentry.Handlers.errorHandler());
+
+app.get("/debug-sentry", function mainHandler(req, res) {
+  throw new Error("My first Sentry error!");
+});
+
 const index = require('./routes/index.js');
 const user = require('./routes/user.js');
 const pet = require('./routes/pet.js');
@@ -95,4 +132,16 @@ app.use('/api/pet', pet);
 
 
 // Error Middleware
+// The error handler must be before any other error middleware and after all controllers
+app.use(Sentry.Handlers.errorHandler());
+
+// Optional fallthrough error handler
+app.use(function onError(err, req, res, next) {
+  // The error id is attached to `res.sentry` to be returned
+  // and optionally displayed to the user for support.
+  res.statusCode = 500;
+  res.end(res.sentry + "\n");
+});
+
+
 app.use(require('./libs/error.js'));

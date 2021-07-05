@@ -37,7 +37,9 @@ module.exports = auth = async (req, res, next) => {
       return;
     } catch (error) {
       console.error('Error while verifying Firebase ID token:', error);
-      res.status(403).send('Unauthorized');
+      
+      res.status(500).send('Unauthorized');
+      throw new Error("Unauthorized!");
       return;
     }
   };
