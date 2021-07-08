@@ -48,6 +48,7 @@ class UserModel {
 
     }catch(ex){
       console.log('Enek seng salah iki ' + ex)
+      throw new Error("Log :" + ex);
     };
   }
 
@@ -133,9 +134,9 @@ class UserModel {
       let res;
       var d = new Date(Date.now());d.toLocaleString('en-GB', { timeZone: 'Asia/Jakarta' });
       let value = [data.uid_user, data.pet_name, data.pet_born, data.pet_gender, data.pet_bloodtype, 
-                  data.pet_weight, data.pet_height, data.pet_type, data.pet_photo_path, d, d];
-      res = await pool.query('INSERT INTO ' + dbPets + ' (uid_user, pet_name, pet_born, pet_gender, pet_blood_type, pet_weight, pet_height, pet_type, pet_photo_path, created_at, updated_at)'+
-                            ' VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *', value);
+                  data.pet_weight, data.pet_height, data.pet_type, data.pet_microchip_id, data.pet_photo_path, d, d];
+      res = await pool.query('INSERT INTO ' + dbPets + ' (uid_user, pet_name, pet_born, pet_gender, pet_blood_type, pet_weight, pet_height, pet_type, pet_microchip_id, pet_photo_path, created_at, updated_at)'+
+                            ' VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING *', value);
       debug('get %o', res);
       return res.rows[0];
     } catch (ex) {
@@ -149,9 +150,9 @@ class UserModel {
       let res;
       var d = new Date(Date.now());d.toLocaleString('en-GB', { timeZone: 'Asia/Jakarta' });
       let value = [data.uid_user, data.pet_id, data.pet_name, data.pet_born, data.pet_gender, data.pet_bloodtype, 
-                  data.pet_weight, data.pet_height, data.pet_type, data.pet_photo_path, d];
-      res = await pool.query('UPDATE ' + dbPets + ' SET (pet_name, pet_born, pet_gender, pet_blood_type, pet_weight, pet_height, pet_type, pet_photo_path, updated_at)'+
-                            ' = ($3, $4, $5, $6, $7, $8, $9, $10, $11) WHERE uid_user = $1 AND id = $2 RETURNING *', value);
+                  data.pet_weight, data.pet_height, data.pet_type, data.pet_microchip_id, data.pet_photo_path, d];
+      res = await pool.query('UPDATE ' + dbPets + ' SET (pet_name, pet_born, pet_gender, pet_blood_type, pet_weight, pet_height, pet_type, pet_microchip_id, pet_photo_path, updated_at)'+
+                            ' = ($3, $4, $5, $6, $7, $8, $9, $10, $11, $12) WHERE uid_user = $1 AND id = $2 RETURNING *', value);
       debug('get %o', res);
       return res.rows[0];
     } catch (ex) {
@@ -188,9 +189,9 @@ class UserModel {
     try{
       let res;
       if (uid_user === 'all') {
-        res = await pool.query('SELECT pet_name, pet_type, pet_gender, age(pet_born) as age from ' + dbPets + ' ORDER BY uid_user ASC')
+        res = await pool.query('SELECT id, uid_user, pet_photo_path, pet_name, pet_type, pet_gender, age(pet_born) as age, pet_microchip_id from ' + dbPets + ' ORDER BY uid_user ASC')
       } else {
-        res = await pool.query('SELECT pet_name, pet_type, pet_gender, age(pet_born) as age from ' + dbPets + ' where uid_user = $1 ORDER BY uid_user ASC', [uid_user]);
+        res = await pool.query('SELECT id, uid_user, pet_photo_path, pet_name, pet_type, pet_gender, age(pet_born) as age, pet_microchip_id from ' + dbPets + ' where uid_user = $1 ORDER BY uid_user ASC', [uid_user]);
       }
       debug('get %o', res);
       return res.rows;

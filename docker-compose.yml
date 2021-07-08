@@ -12,19 +12,19 @@ services:
         env_file: .env
         environment:
             - POSTGRES_USER=postgres
-            - POSTGRES_HOST=18.216.58.97
-            - POSTGRES_DATABASE=petdiary
-            - POSTGRES_PASSWORD=postgres
+            - POSTGRES_HOST=34.101.119.75
+            - POSTGRES_DATABASE=petidary
+            - POSTGRES_PASSWORD=postgresql123
             - POSTGRES_SSLMODE=$POSTGRES_SSLMODE
-            - POSTGRES_PORT=$POSTGRES_PORT
+            - POSTGRES_PORT=9005
         networks:
             - app
         ports:
             - 3000:3000
         # command: user:postgre host:18.216.58.97 db:petdiary pass:postgres  -- npm start
         #Use Volume if in Development & comment if in production
-        # volumes:
-        #     - .:/app
+        volumes:
+            - .:/app
 
 networks:
    app:
