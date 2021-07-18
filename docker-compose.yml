@@ -4,10 +4,10 @@ services:
     pet-diary:
         #Use Build if in Development
         #Use image if in Production
-        # build:
-        #     context: .
-        #     dockerfile: Dockerfile
-        image: denandahp/pet-diary-backend:0.0.2
+        build:
+            context: .
+            dockerfile: Dockerfile
+        # image: denandahp/pet-diary-backend:0.0.2
         container_name: pet-diary-run
         env_file: .env
         environment:

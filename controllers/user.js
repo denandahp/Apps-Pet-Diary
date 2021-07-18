@@ -178,9 +178,9 @@ class UserController {
       let pet_id = req.params.pet_id;
       try {
         let detail = await user.profilepet(pet_id);
+        console.log(detail);
         if (detail.status == '400'){res.status(400).json({detail});}
         else { res.status(200).json({detail});}
-
       } catch (e) {
         console.log(e);
         let errorResponse = authUtils.processLoginError(e);

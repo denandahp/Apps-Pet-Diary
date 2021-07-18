@@ -53,21 +53,33 @@ class UserModel {
   }
 
   async signup(data) {
+    let resdet, resuser, result = {};
     try{
-      let resdet, resuser, result = {};
+      
       var d = new Date(Date.now());d.toLocaleString('en-GB', { timeZone: 'Asia/Jakarta' });
-      let valueuser = [data.uid_firebase, data.email, data.type_auth, d];
-      console.log(valueuser);
-      resuser = await pool.query('INSERT INTO ' + dbUser + ' (uid, email, type_auth, created_at) VALUES ($1, $2, $3, $4) RETURNING *', valueuser);
-      let valuedet = [data.uid_firebase, data.full_name, data.phone, data.birthday, data.photo_path ,d];
-      resdet = await pool.query('INSERT INTO ' + dbDetail + ' (uid_user, full_name, phone, birthday, user_photo, created_at) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *', valuedet);
-      result.detail = resdet.rows[0];
-      result.user = resuser.rows[0];
-      console.log(result);
-      debug('get %o', result);
-      return result;
+      const res = await pool.query('SELECT * FROM' + dbViewprofile + 'where uid = $1 ',[data.uid_firebase]);
+      if (res.rowCount > 0) {
+        throw new Error(`UID : ${data.uid_firebase} sudah terdaftar`);
+      }else{
+        let valueuser = [data.uid_firebase, data.email, data.type_auth, d];
+        console.log(valueuser);
+        resuser = await pool.query('INSERT INTO ' + dbUser + ' (uid, email, type_auth, created_at) VALUES ($1, $2, $3, $4) RETURNING *', valueuser);
+        let valuedet = [data.uid_firebase, data.full_name, data.phone, data.birthday, data.photo_path ,d];
+        resdet =await pool.query('INSERT INTO ' + dbDetail + ' (uid_user, full_name, phone, birthday, user_photo, created_at) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *', valuedet);
+        console.log("eerrroo : "+resdet.code)
+        result.user = resuser.rows[0];
+        result.detail = resdet.rows[0];
+        console.log(result);
+        debug('get %o', result);
+        return result;
+      }
 
     } catch (ex) {
+      console.log(ex.code)
+      if(ex.code){
+          await pool.query('DELETE FROM ' + dbUser + ' WHERE uid = $1 RETURNING *', [data.uid_firebase]);
+          await pool.query('DELETE FROM ' + dbDetail + ' WHERE uid_user = $1 RETURNING *', [data.uid_firebase]);
+      }
       console.log('Enek seng salah iki ' + ex)
       return {status:'400', Error : ""+ex};
     };
@@ -75,12 +87,14 @@ class UserModel {
 
   async getprofile (uid) {
     try{
-      console.log("cek sini");
       let res;
       if (uid === 'all') {
         res = await pool.query('SELECT * from ' + dbViewprofile + ' ORDER BY user_id ASC')
       } else {
         res = await pool.query('SELECT * from ' + dbViewprofile + ' where uid = $1 ORDER BY user_id ASC', [uid]);
+        if(res.rowCount <= 0){
+          throw new Error(`UID : ${uid} Tidak terdaftar`);
+        }
       }
       
       debug('get %o', res);
@@ -95,17 +109,26 @@ class UserModel {
     try{
       let resdet, resuser, result = {};
       var d = new Date(Date.now());d.toLocaleString('en-GB', { timeZone: 'Asia/Jakarta' });
-      let valueuser = [data.uid_firebase, data.email];
-      resuser = await pool.query('UPDATE ' + dbUser + ' SET email = $2 WHERE uid = $1 RETURNING *', valueuser);
-      let valuedet = [data.uid_firebase, data.full_name, data.phone, data.birthday, data.photo_path ,d];
-      resdet = await pool.query('UPDATE' + dbDetail + ' SET (full_name, phone, birthday, user_photo, created_at) = ($2, $3, $4, $5, $6) where uid_user = $1 RETURNING *', valuedet);
-      result.detail = resdet.rows[0];
-      result.user = resuser.rows[0];
-      console.log(result);
-      debug('get %o', result);
-      return result;
-
+      const res = await pool.query('SELECT * FROM' + dbViewprofile + 'where uid = $1 ',[data.uid_firebase]);
+      console.log(res.rowCount);
+      if (res.rowCount <= 0) {
+        throw new Error(`UID : ${data.uid_firebase} sudah terdaftar`);
+      }else{
+        let valueuser = [data.uid_firebase, data.email];
+        resuser = await pool.query('UPDATE ' + dbUser + ' SET email = $2 WHERE uid = $1 RETURNING *', valueuser);
+        let valuedet = [data.uid_firebase, data.full_name, data.phone, data.birthday, data.photo_path ,d];
+        resdet = await pool.query('UPDATE' + dbDetail + ' SET (full_name, phone, birthday, user_photo, created_at) = ($2, $3, $4, $5, $6) where uid_user = $1 RETURNING *', valuedet);
+        result.detail = resdet.rows[0];
+        result.user = resuser.rows[0];
+        console.log(result);
+        debug('get %o', result);
+        return result;
+      }
     } catch (ex) {
+      if(ex.code){
+        await pool.query('DELETE FROM ' + dbUser + ' WHERE uid = $1 RETURNING *', [data.uid_firebase]);
+        await pool.query('DELETE FROM ' + dbDetail + ' WHERE uid_user = $1 RETURNING *', [data.uid_firebase]);
+      }
       console.log('Enek seng salah iki ' + ex)
       return {status:'400', Error : ""+ex};
     };
@@ -162,15 +185,22 @@ class UserModel {
   }
 
   async profilepet (pet_id) {
-
-    let res;
-    if (pet_id === 'all') {
-      res = await pool.query('SELECT * from ' + dbPets + ' ORDER BY id ASC')
-    } else {
-      res = await pool.query('SELECT * from ' + dbPets + ' where id = $1 ORDER BY id ASC', [pet_id]);
-    }
-    debug('get %o', res);
-    return res.rows[0];
+    try{
+      let res;
+      if (pet_id === 'all') {
+        res = await pool.query('SELECT * ,age(pet_born) as age from ' + dbPets + ' ORDER BY id ASC')
+      } else {
+        res = await pool.query('SELECT *, age(pet_born) as age from ' + dbPets + ' where id = $1 ORDER BY id ASC', [pet_id]);
+        if (res.rowCount <= 0) {
+          throw new Error('ID Pet Belum terdaftar.');
+        }
+      }
+      debug('get %o', res);
+      return res.rows;
+    }catch (ex) {
+      console.log('Enek seng salah iki ' + ex);
+      return {status:'400', Error : ""+ex};
+    };
   }
 
   async deleteprofilpet (pet_id) {
@@ -192,6 +222,9 @@ class UserModel {
         res = await pool.query('SELECT id, uid_user, pet_photo_path, pet_name, pet_type, pet_gender, age(pet_born) as age, pet_microchip_id from ' + dbPets + ' ORDER BY uid_user ASC')
       } else {
         res = await pool.query('SELECT id, uid_user, pet_photo_path, pet_name, pet_type, pet_gender, age(pet_born) as age, pet_microchip_id from ' + dbPets + ' where uid_user = $1 ORDER BY uid_user ASC', [uid_user]);
+        if(res.rowCount <= 0){
+          throw new Error(`UID : ${uid_user} Tidak terdaftar`);
+        }
       }
       debug('get %o', res);
       return res.rows;
@@ -199,9 +232,7 @@ class UserModel {
       console.log('Enek seng salah iki ' + ex);
       return {status:'400', Error : ""+ex};
     };
-
   }
-
 }
 
 module.exports = new UserModel();

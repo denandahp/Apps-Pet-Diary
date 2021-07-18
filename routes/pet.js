@@ -16,6 +16,7 @@ Router.post('/addpet', auth, user.addpet)
       .get('/profil/:pet_id', auth, user.profilepet)
       .delete('/delete/note/:note_id', auth,  pet.deletenote)
       .delete('/profil/deletepet/:pet_id', auth, user.deleteprofilpet)
+      
 
 
 module.exports = Router;
