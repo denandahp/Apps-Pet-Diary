@@ -223,7 +223,7 @@ class UserModel {
       } else {
         res = await pool.query('SELECT id, uid_user, pet_photo_path, pet_name, pet_type, pet_gender, age(pet_born) as age, pet_microchip_id from ' + dbPets + ' where uid_user = $1 ORDER BY uid_user ASC', [uid_user]);
         if(res.rowCount <= 0){
-          throw new Error(`UID : ${uid_user} Tidak terdaftar`);
+          res = {rows : 0};
         }
       }
       debug('get %o', res);
