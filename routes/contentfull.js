@@ -1,11 +1,17 @@
 const Router = require('express').Router();
 const axios = require('axios');
 
-const url = 'https://cdn.contentful.com/spaces/p4stxfymwhqd/environments/master/entries?access_token=okjmWMGmwQYyEQELGVcZ-01PrrVhhN1g4TCprTCUM3I'
-
-Router.get('/head',
+const url = 'https://cdn.contentful.com/spaces/p4stxfymwhqd/environments/master/entries'
+const token = 'order=sys.createdAt&access_token=okjmWMGmwQYyEQELGVcZ-01PrrVhhN1g4TCprTCUM3I'
+Router.get('/head/:skip?',
     function(req, res, next) {
-        axios.get(url)
+        var url_combine = url + '?' + token
+
+        if (req.params.skip != undefined) {
+            url_combine = url + '?skip=' + req.params.skip + '&' + token
+        }
+
+        axios.get(url_combine)
             .then(function(response) {
                 // handle success
                 var images = response.data.includes.Asset.map(data => {
@@ -33,6 +39,9 @@ Router.get('/head',
 
                 res.status(200).json({
                     message: "Success",
+                    total: response.data.total,
+                    skip: response.data.skip,
+                    limit: response.data.limit,
                     head: head
                 })
 
@@ -40,7 +49,8 @@ Router.get('/head',
             .catch(function(error) {
                 // handle error
                 res.status(400).json({
-                    message: "Bad Request"
+                    message: "Bad Request",
+                    head: []
                 })
             })
             .then(function() {
@@ -53,45 +63,37 @@ Router.get('/head',
 Router.get('/content/:id',
     function(req, res, next) {
         var content_id = req.params.id
-        axios.get(url)
+        axios.get(url + '/' + content_id + '?' + token)
             .then(function(response) {
                 // handle success
-                var result = response.data.items.find(item => {
-                    return item.sys.id == content_id
-                })
-                if (result != undefined) {
-                    var contents = result.fields.content.content.map(data => {
-                        var content = '';
-                        data.content.forEach(data2 => {
-                            if (data2.data.uri == undefined) {
-                                content = content + data2.value
-                            } else {
-                                data2.content.forEach(data3 => {
-                                    content = content + data3.value
-                                })
-                            }
-
-                        })
 
 
-                        return {
-
-                            type: data.nodeType,
-                            content
+                var contents = response.data.fields.content.content.map(data => {
+                    var content = '';
+                    data.content.forEach(data2 => {
+                        if (data2.data.uri == undefined) {
+                            content = content + data2.value
+                        } else {
+                            data2.content.forEach(data3 => {
+                                content = content + data3.value
+                            })
                         }
+
                     })
-                    res.status(200).json({
-                        message: "Success",
-                        title: result.fields.title,
-                        createdAt: result.fieldscreatedAt,
-                        updatedAt: result.fieldsupdatedAt,
-                        contents
-                    })
-                } else {
-                    res.status(400).json({
-                        message: "Bad Request"
-                    })
-                }
+                    return {
+
+                        type: data.nodeType,
+                        content
+                    }
+                })
+                res.status(200).json({
+                    message: "Success",
+                    title: response.data.fields.title,
+                    createdAt: response.data.sys.createdAt,
+                    updatedAt: response.data.sys.updatedAt,
+                    contents
+                })
+
 
 
             })
