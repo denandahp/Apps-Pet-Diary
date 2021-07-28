@@ -125,10 +125,12 @@ app.get("/debug-sentry", function mainHandler(req, res) {
 const index = require('./routes/index.js');
 const user = require('./routes/user.js');
 const pet = require('./routes/pet.js');
+const news = require('./routes/contentfull.js')
 
 app.use('/', index);
 app.use('/api/user', user);
 app.use('/api/pet', pet);
+app.use('/api/news', news)
 
 
 // Error Middleware
