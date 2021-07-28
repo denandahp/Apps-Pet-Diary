@@ -126,11 +126,13 @@ const index = require('./routes/index.js');
 const user = require('./routes/user.js');
 const pet = require('./routes/pet.js');
 const news = require('./routes/contentfull.js')
+const notification = require('./routes/notification.js');
 
 app.use('/', index);
 app.use('/api/user', user);
 app.use('/api/pet', pet);
 app.use('/api/news', news)
+app.use('/api/notification', notification);
 
 
 // Error Middleware
