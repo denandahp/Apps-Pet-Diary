@@ -40,7 +40,7 @@ Router.get('/head/:skip?',
                 res.status(200).json({
                     message: "Success",
                     total: response.data.total,
-                    skip: response.data.skip,
+                    skip: req.params.skip,
                     limit: response.data.limit,
                     head: head
                 })
@@ -48,8 +48,11 @@ Router.get('/head/:skip?',
             })
             .catch(function(error) {
                 // handle error
-                res.status(400).json({
-                    message: "Bad Request",
+                res.status(200).json({
+                    message: "News empty",
+                    total: 0,
+                    skip: req.params.skip,
+                    limit: 0,
                     head: []
                 })
             })
