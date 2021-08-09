@@ -2,7 +2,6 @@ exports.createschedule = (data) => {
   var message = {
     data: {
       uid: data.uid,
-      note_id : data.id,
       click_notif: 'CREATE_SCHEDULE'
     },
     notification: {
