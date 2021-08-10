@@ -1,8 +1,30 @@
 const Router = require('express').Router();
 const axios = require('axios');
 
-const url = 'https://cdn.contentful.com/spaces/p4stxfymwhqd/environments/master/entries'
-const token = 'order=sys.createdAt&access_token=okjmWMGmwQYyEQELGVcZ-01PrrVhhN1g4TCprTCUM3I'
+//Pak mahmudi
+// const url = 'https://cdn.contentful.com/spaces/p4stxfymwhqd/environments/master/entries'
+// const token = 'order=sys.createdAt&access_token=okjmWMGmwQYyEQELGVcZ-01PrrVhhN1g4TCprTCUM3I'
+
+//Nusantera
+const url = 'https://cdn.contentful.com/spaces/qtkmssz6omcr/environments/master/entries'
+const token = 'order=sys.createdAt&access_token=iA7Az6-D9yOxIxh1q5e9-ya7U2YT6_pBOKnyEydE7Wc'
+
+Router.post('/new/content',
+    function(req, res, next) {
+        let data = req.body
+
+        //virtual response
+        let valueForNotif = {
+            id: data.sys.id,
+            type: data.sys.type,
+            createdAt: data.sys.createdAt,
+            updatedAt: data.sys.updatedAt
+
+        }
+    }
+);
+
+
 Router.get('/head/:skip?',
     function(req, res, next) {
         var url_combine = url + '?' + token
