@@ -38,7 +38,7 @@ Router.post('/new/content',
         })
         let body = notifbody.postcontentful(data, tokens);
         admin.messaging().sendMulticast(body.payload)
-        .then(function(response) {
+        .then((response) => {
             let message = response.successCount + ' messages were sent successfully'
             console.log(response.successCount + ' messages were sent successfully');
             res.status(200).json({
@@ -46,10 +46,6 @@ Router.post('/new/content',
                 result: response,
           })
         })
-        .catch(function(error) {
-          res.status(400).json('Error sending message:' + error)
-          console.log('Error sending message:', error);
-        });
     }
 );
 
