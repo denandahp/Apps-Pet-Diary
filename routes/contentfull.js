@@ -1,5 +1,13 @@
-const Router = require('express').Router();
+const admin = require("../config/firebase_config.js");
 const axios = require('axios');
+const notifbody = require('../models/notificationBody.js');
+const pool = require('../libs/db');
+const Router = require('express').Router();
+
+
+const schema = '"users"';
+const dbViewprofile = schema + '.' + '"profile_user"';
+
 
 //Pak mahmudi
 // const url = 'https://cdn.contentful.com/spaces/p4stxfymwhqd/environments/master/entries'
@@ -10,7 +18,7 @@ const url = 'https://cdn.contentful.com/spaces/qtkmssz6omcr/environments/master/
 const token = 'order=sys.createdAt&access_token=iA7Az6-D9yOxIxh1q5e9-ya7U2YT6_pBOKnyEydE7Wc'
 
 Router.post('/new/content',
-    function(req, res, next) {
+    async function(req, res, next) {
         let data = req.body
 
         //virtual response
@@ -21,6 +29,27 @@ Router.post('/new/content',
             updatedAt: data.sys.updatedAt
 
         }
+        const tokens = [];
+        let querys = await pool.query('SELECT * from ' + dbViewprofile + ' ORDER BY user_id ASC')
+        querys.rows.forEach((item) => {
+            if (item.token_firebase) {
+              tokens.push(item.token_firebase);
+          }
+        })
+        let body = notifbody.postcontentful(data, tokens);
+        admin.messaging().sendMulticast(body.payload)
+        .then(function(response) {
+            let message = response.successCount + ' messages were sent successfully'
+            console.log(response.successCount + ' messages were sent successfully');
+            res.status(200).json({
+                pesan: message,
+                result: response,
+          })
+        })
+        .catch(function(error) {
+          res.status(400).json('Error sending message:' + error)
+          console.log('Error sending message:', error);
+        });
     }
 );
 

@@ -6,7 +6,7 @@ const user = require('../controllers/user.js');
 Router.post('/signup', auth, user.signup)
       .post('/registerfirebase',  user.register)
       .put('/update/profile', auth, user.updateprofile)
-      .get('/profile/:uid', auth, user.getprofile)
+      .get('/profile/:uid', user.getprofile)
       .get('/signup/checkdata/:uid', user.checkdatauser)
 
 

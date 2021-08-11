@@ -11,12 +11,13 @@ services:
         container_name: pet-diary-run
         env_file: .env
         environment:
-            - POSTGRES_USER=postgres
-            - POSTGRES_HOST=34.101.119.75
-            - POSTGRES_DATABASE=petidary
-            - POSTGRES_PASSWORD=postgresql123
-            - POSTGRES_SSLMODE=$POSTGRES_SSLMODE
-            - POSTGRES_PORT=9005
+            - TZ=Asia/Jakarta
+            # - POSTGRES_USER=postgres
+            # - POSTGRES_HOST=34.101.119.75
+            # - POSTGRES_DATABASE=petidary
+            # - POSTGRES_PASSWORD=postgresql123
+            # - POSTGRES_SSLMODE=$POSTGRES_SSLMODE
+            # - POSTGRES_PORT=9005
         networks:
             - app
         ports:

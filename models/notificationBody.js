@@ -17,3 +17,14 @@ exports.createschedule = (data) => {
       
     return {"payload" : message};
 }
+
+
+exports.postcontentful = (data, tokens) => {
+  var message = {
+    title: 'Hi, we have the hot news today',
+    body: data.notification_body,
+    token: tokens
+  }
+
+  return {"payload" : message}
+}
