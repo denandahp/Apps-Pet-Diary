@@ -32,5 +32,5 @@ exports.postcontentful = (data, tokens) => {
     token: tokens
   }
 
-  return {"payload" : message}
+  return { "payload" :  message }
 }
