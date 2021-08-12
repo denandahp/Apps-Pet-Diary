@@ -20,23 +20,26 @@ const token = 'order=sys.createdAt&access_token=iA7Az6-D9yOxIxh1q5e9-ya7U2YT6_pB
 Router.post('/new/content',
     async function(req, res, next) {
         let data = req.body
-
+	console.log(req.body)
+        //console.log(req.headers)
         //virtual response
         let valueForNotif = {
-            id: data.sys.id,
-            type: data.sys.type,
-            createdAt: data.sys.createdAt,
-            updatedAt: data.sys.updatedAt
+            id: data.id,
+            type: data.type,
+            createdAt: data.createdAt,
+            updatedAt: data.updatedAt
 
         }
+	//res.status(200).send("OKAY")
         const tokens = [];
         let querys = await pool.query('SELECT * from ' + dbViewprofile + ' ORDER BY user_id ASC')
         querys.rows.forEach((item) => {
             if (item.token_firebase) {
               tokens.push(item.token_firebase);
-          }
+           }
         })
         let body = notifbody.postcontentful(data, tokens);
+//	res.status(200).send(body)
         admin.messaging().sendMulticast(body.payload)
         .then((response) => {
             let message = response.successCount + ' messages were sent successfully'
