@@ -22,12 +22,12 @@ exports.createschedule = (data) => {
 exports.postcontentful = (data, tokens) => {
   var message = {
     data: {
-      type: data.sys.type,
+      type: String(data.type),
       click_notif: 'POST_CONTENTFUL'
     },
     notification: {
       title: 'Hi, we have the hot news today',
-      body: data.notification_body,
+      body: String(data.id),
     },
     token: tokens
   }
