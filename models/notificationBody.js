@@ -2,6 +2,8 @@ exports.createschedule = (data) => {
   var message = {
     data: {
       uid: data.uid,
+      note_id: data.note_id,
+      pet_id: data.pet_id,
       click_notif: 'CREATE_SCHEDULE'
     },
     notification: {
@@ -22,6 +24,7 @@ exports.createschedule = (data) => {
 exports.postcontentful = (data, tokens) => {
   var message = {
     data: {
+      id: data.id,
       type: String(data.type),
       click_notif: 'POST_CONTENTFUL'
     },

@@ -18,8 +18,9 @@ class notificationModel{
         let result = await pool.query('INSERT INTO ' + dbTable + ' (uid_user, note_id, time, days, notification_title, notification_body, created_at)'+
                                ' VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *', value);
 
-        //Format for time "October 13, 2014 11:13:00"
-        const date = new Date(`${data.days} ${data.time}`);
+        //Format for time "2021-08-14 11:13:00"
+        const date = new Date(`${data.days} ${data.time}`);date.toLocaleString('en-GB', { timeZone: 'Asia/Jakarta' });
+        console.log(date);
         let body = await notifbody.createschedule(data);
         let message = "Medical checkup schedule berhasil tanggal " + date
         const mjob = scheduleLib.scheduleJob(date, function (){
