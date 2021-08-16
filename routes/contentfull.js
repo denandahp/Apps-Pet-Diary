@@ -20,7 +20,7 @@ const token = 'order=sys.createdAt&access_token=okjmWMGmwQYyEQELGVcZ-01PrrVhhN1g
 Router.post('/new/content',
     async function(req, res, next) {
         let data = req.body
-        console.log(req.body)
+            // console.log(req.body)
             //console.log(req.headers)
             //virtual response
         let valueForNotif = {
@@ -43,7 +43,7 @@ Router.post('/new/content',
         admin.messaging().sendMulticast(body.payload)
             .then((response) => {
                 let message = response.successCount + ' messages were sent successfully'
-                console.log(response.successCount + ' messages were sent successfully');
+                    // console.log(response.successCount + ' messages were sent successfully');
                 res.status(200).json({
                     pesan: message,
                     result: response,
@@ -74,7 +74,7 @@ Router.get('/head/:skip?',
                 })
 
                 var head = response.data.items.map(data => {
-                    console.log(data.fields.images)
+                    // console.log(data.fields.images)
                     return {
                         id: data.sys.id,
                         createdAt: data.sys.createdAt,
