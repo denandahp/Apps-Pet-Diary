@@ -89,7 +89,68 @@ Router.get('/head/:skip?',
 
                     }
                 })
-                console.log(head)
+
+
+                res.status(200).json({
+                    message: "Success",
+                    total: response.data.total,
+                    skip: req.params.skip,
+                    limit: response.data.limit,
+                    head: head
+                })
+
+            })
+            .catch(function(error) {
+                // handle error
+                res.status(200).json({
+                    message: "News empty",
+                    total: 0,
+                    skip: req.params.skip,
+                    limit: 0,
+                    head: []
+                })
+            })
+            .then(function() {
+                // always executed
+            });
+    }
+);
+
+Router.get('/featured',
+    function(req, res, next) {
+        var url_combine = url + '?skip=0&limit=2&' + token
+
+
+
+        axios.get(url_combine)
+            .then(function(response) {
+                // handle success
+
+                var images = response.data.includes.Asset.map(data => {
+                    return {
+                        id: data.sys.id,
+                        image_url: data.fields.file.url.replace("//", ""),
+                        image_size: data.fields.file.details.image
+                    }
+                })
+
+                var head = response.data.items.map(data => {
+                    // console.log(data.fields.images)
+                    return {
+                        id: data.sys.id,
+                        createdAt: data.sys.createdAt,
+                        updatedAt: data.sys.updatedAt,
+                        title: data.fields.title,
+                        images: data.fields.images.map(data2 => {
+
+                            return images.find(item => {
+                                return item.id == data2.sys.id
+                            })
+                        })
+
+                    }
+                })
+
 
                 res.status(200).json({
                     message: "Success",
