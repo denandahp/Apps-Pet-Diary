@@ -10,45 +10,45 @@ const dbViewprofile = schema + '.' + '"profile_user"';
 
 
 //Pak mahmudi
-// const url = 'https://cdn.contentful.com/spaces/p4stxfymwhqd/environments/master/entries'
-// const token = 'order=sys.createdAt&access_token=okjmWMGmwQYyEQELGVcZ-01PrrVhhN1g4TCprTCUM3I'
+const url = 'https://cdn.contentful.com/spaces/p4stxfymwhqd/environments/master/entries'
+const token = 'order=sys.createdAt&access_token=okjmWMGmwQYyEQELGVcZ-01PrrVhhN1g4TCprTCUM3I'
 
 //Nusantera
-const url = 'https://cdn.contentful.com/spaces/qtkmssz6omcr/environments/master/entries'
-const token = 'order=sys.createdAt&access_token=iA7Az6-D9yOxIxh1q5e9-ya7U2YT6_pBOKnyEydE7Wc'
+//const url = 'https://cdn.contentful.com/spaces/qtkmssz6omcr/environments/master/entries'
+//const token = 'order=sys.createdAt&access_token=iA7Az6-D9yOxIxh1q5e9-ya7U2YT6_pBOKnyEydE7Wc'
 
 Router.post('/new/content',
     async function(req, res, next) {
         let data = req.body
-	console.log(req.body)
-        //console.log(req.headers)
-        //virtual response
+        console.log(req.body)
+            //console.log(req.headers)
+            //virtual response
         let valueForNotif = {
-            id: data.id,
-            type: data.type,
-            createdAt: data.createdAt,
-            updatedAt: data.updatedAt
+                id: data.id,
+                type: data.type,
+                createdAt: data.createdAt,
+                updatedAt: data.updatedAt
 
-        }
-	//res.status(200).send("OKAY")
+            }
+            //res.status(200).send("OKAY")
         const tokens = [];
         let querys = await pool.query('SELECT * from ' + dbViewprofile + ' ORDER BY user_id ASC')
         querys.rows.forEach((item) => {
             if (item.token_firebase) {
-              tokens.push(item.token_firebase);
-           }
+                tokens.push(item.token_firebase);
+            }
         })
         let body = notifbody.postcontentful(data, tokens);
-//	res.status(200).send(body)
+        //	res.status(200).send(body)
         admin.messaging().sendMulticast(body.payload)
-        .then((response) => {
-            let message = response.successCount + ' messages were sent successfully'
-            console.log(response.successCount + ' messages were sent successfully');
-            res.status(200).json({
-                pesan: message,
-                result: response,
-          })
-        })
+            .then((response) => {
+                let message = response.successCount + ' messages were sent successfully'
+                console.log(response.successCount + ' messages were sent successfully');
+                res.status(200).json({
+                    pesan: message,
+                    result: response,
+                })
+            })
     }
 );
 
@@ -64,6 +64,7 @@ Router.get('/head/:skip?',
         axios.get(url_combine)
             .then(function(response) {
                 // handle success
+
                 var images = response.data.includes.Asset.map(data => {
                     return {
                         id: data.sys.id,
@@ -71,7 +72,9 @@ Router.get('/head/:skip?',
                         image_size: data.fields.file.details.image
                     }
                 })
+
                 var head = response.data.items.map(data => {
+                    console.log(data.fields.images)
                     return {
                         id: data.sys.id,
                         createdAt: data.sys.createdAt,
@@ -86,6 +89,7 @@ Router.get('/head/:skip?',
 
                     }
                 })
+                console.log(head)
 
                 res.status(200).json({
                     message: "Success",
