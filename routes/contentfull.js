@@ -11,6 +11,8 @@ const dbViewprofile = schema + '.' + '"profile_user"';
 
 //Pak mahmudi
 const url = 'https://cdn.contentful.com/spaces/p4stxfymwhqd/environments/master/entries'
+const url_asset = 'https://cdn.contentful.com/spaces/p4stxfymwhqd/environments/master/assets'
+
 const token = 'order=sys.createdAt&access_token=okjmWMGmwQYyEQELGVcZ-01PrrVhhN1g4TCprTCUM3I'
 
 //Nusantera
@@ -187,13 +189,6 @@ Router.get('/content/:id',
             .then(function(response) {
                 // handle success
 
-                var images = response.data.includes.Asset.map(data => {
-                    return {
-                        id: data.sys.id,
-                        image_url: data.fields.file.url.replace("//", ""),
-                        image_size: data.fields.file.details.image
-                    }
-                })
 
                 var contents = response.data.fields.content.content.map(data => {
                     var content = '';
@@ -210,17 +205,48 @@ Router.get('/content/:id',
                     return {
 
                         type: data.nodeType,
-
                         content
                     }
                 })
                 res.status(200).json({
                     message: "Success",
                     title: response.data.fields.title,
-                    images: images,
                     createdAt: response.data.sys.createdAt,
                     updatedAt: response.data.sys.updatedAt,
-                    contents
+                    images_id: response.data.fields.images[0].sys.id,
+                    contents,
+                })
+
+
+
+            })
+            .catch(function(error) {
+                // handle error
+                res.status(400).json({
+                    message: "Bad Request"
+                })
+            })
+            .then(function() {
+                // always executed
+            });
+    }
+);
+
+
+Router.get('/assets/:id',
+    function(req, res, next) {
+        var content_id = req.params.id
+        axios.get(url_asset + '/' + content_id + '?' + token)
+            .then(function(response) {
+                var images = {
+                    id: content_id,
+                    image_url: response.data.fields.file.url.replace("//", ""),
+                    image_size: response.data.fields.file.details.image
+                }
+
+                res.status(200).json({
+                    message: "Success",
+                    images
                 })
 
 
