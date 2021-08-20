@@ -20,8 +20,8 @@ const token = 'order=sys.createdAt&access_token=okjmWMGmwQYyEQELGVcZ-01PrrVhhN1g
 Router.post('/new/content',
     async function(req, res, next) {
         let data = req.body
-//	res.send(data)
-//          console.log(req.body)
+            //	res.send(data)
+            //          console.log(req.body)
             //console.log(req.headers)
             //virtual response
         let valueForNotif = {
@@ -40,12 +40,12 @@ Router.post('/new/content',
             }
         })
         let body = notifbody.postcontentful(data, tokens);
-//        res.status(200).send(tokens)
-//	console.log(body.payload)
+        //        res.status(200).send(tokens)
+        //	console.log(body.payload)
         admin.messaging().sendMulticast(body.payload)
             .then((response) => {
                 let message = response.successCount + ' messages were sent successfully'
-                 console.log(response.successCount + ' messages were sent successfully');
+                console.log(response.successCount + ' messages were sent successfully');
                 res.status(200).json({
                     pesan: message,
                     result: response,
@@ -187,6 +187,13 @@ Router.get('/content/:id',
             .then(function(response) {
                 // handle success
 
+                var images = response.data.includes.Asset.map(data => {
+                    return {
+                        id: data.sys.id,
+                        image_url: data.fields.file.url.replace("//", ""),
+                        image_size: data.fields.file.details.image
+                    }
+                })
 
                 var contents = response.data.fields.content.content.map(data => {
                     var content = '';
@@ -203,12 +210,14 @@ Router.get('/content/:id',
                     return {
 
                         type: data.nodeType,
+
                         content
                     }
                 })
                 res.status(200).json({
                     message: "Success",
                     title: response.data.fields.title,
+                    images: images,
                     createdAt: response.data.sys.createdAt,
                     updatedAt: response.data.sys.updatedAt,
                     contents
