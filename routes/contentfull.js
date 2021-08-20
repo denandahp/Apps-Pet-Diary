@@ -187,13 +187,13 @@ Router.get('/content/:id',
             .then(function(response) {
                 // handle success
 
-                var images = response.data.includes.Asset.map(data => {
-                    return {
-                        id: data.sys.id,
-                        image_url: data.fields.file.url.replace("//", ""),
-                        image_size: data.fields.file.details.image
-                    }
-                })
+//                var images = response.data.includes.Asset.map(data => {
+//                    return {
+//                        id: data.sys.id,
+//                        image_url: data.fields.file.url.replace("//", ""),
+//                        image_size: data.fields.file.details.image
+//                    }
+//                })
 
                 var contents = response.data.fields.content.content.map(data => {
                     var content = '';
@@ -210,14 +210,13 @@ Router.get('/content/:id',
                     return {
 
                         type: data.nodeType,
-
                         content
                     }
                 })
                 res.status(200).json({
                     message: "Success",
                     title: response.data.fields.title,
-                    images: images,
+                    //images: images,
                     createdAt: response.data.sys.createdAt,
                     updatedAt: response.data.sys.updatedAt,
                     contents
