@@ -189,16 +189,6 @@ Router.get('/content/:id',
             .then(function(response) {
                 // handle success
 
-<<<<<<< HEAD
-=======
-//                var images = response.data.includes.Asset.map(data => {
-//                    return {
-//                        id: data.sys.id,
-//                        image_url: data.fields.file.url.replace("//", ""),
-//                        image_size: data.fields.file.details.image
-//                    }
-//                })
->>>>>>> 5e4ff3b4d5b517d2bc1f7e8cc29aac5d6ea13395
 
                 var contents = response.data.fields.content.content.map(data => {
                     var content = '';
@@ -221,10 +211,6 @@ Router.get('/content/:id',
                 res.status(200).json({
                     message: "Success",
                     title: response.data.fields.title,
-<<<<<<< HEAD
-=======
-                    //images: images,
->>>>>>> 5e4ff3b4d5b517d2bc1f7e8cc29aac5d6ea13395
                     createdAt: response.data.sys.createdAt,
                     updatedAt: response.data.sys.updatedAt,
                     images_id: response.data.fields.images[0].sys.id,
