@@ -22,6 +22,7 @@ exports.createschedule = (data) => {
 
 
 exports.postcontentful = (data, tokens) => {
+// console.log(data)
   var message = {
     data: {
       id: data.id,
@@ -30,9 +31,9 @@ exports.postcontentful = (data, tokens) => {
     },
     notification: {
       title: 'Hi, we have the hot news today',
-      body: String(data.id),
+      body: data.title,
     },
-    token: tokens
+    tokens: tokens
   }
 
   return { "payload" :  message }

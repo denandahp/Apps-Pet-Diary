@@ -46,19 +46,21 @@ class petModel {
         try {
             let res;
             if (pet_id === 'all') {
-                res = await pool.query('SELECT id, pet_id, pet_checkup_date, pet_note, pet_photo, updated_at from ' + dbPetcheckup + '  ORDER BY updated_at DESC ')
+                res = await pool.query('SELECT id, pet_id, pet_checkup_date, pet_note, pet_photo, updated_at from ' + dbPetcheckup + '  ORDER BY pet_checkup_date DESC ')
             } else if (pet_id != undefined && note_id == 'all') {
                 //All note by id pet
-                res = await pool.query('SELECT id, pet_id, pet_checkup_date, pet_note, pet_photo, updated_at from ' + dbPetcheckup + ' where pet_id = $1 AND pet_checkup_date IS NOT NULL ORDER BY  ORDER BY updated_at DESC', [pet_id]);
+//        	console.log("test")        
+		res = await pool.query('SELECT id, pet_id, pet_checkup_date, pet_note, pet_photo, updated_at from ' + dbPetcheckup + ' where pet_id = $1 AND pet_checkup_date IS NOT NULL  ORDER BY pet_checkup_date DESC', [pet_id]);
+		
             } else {
                 //Detail note by id pet and note id
-                res = await pool.query('SELECT id, pet_id, pet_checkup_date, pet_note, pet_photo, updated_at from ' + dbPetcheckup + ' where pet_id = $1 AND id = $2 AND pet_checkup_date IS NOT NULL  ORDER BY updated_at DESC', [pet_id, note_id]);
+                res = await pool.query('SELECT id, pet_id, pet_checkup_date, pet_note, pet_photo, updated_at from ' + dbPetcheckup + ' where pet_id = $1 AND id = $2 AND pet_checkup_date IS NOT NULL  ORDER BY pet_checkup_date DESC', [pet_id, note_id]);
             }
 
             //     debug('get %o', res);
             return res.rows;
         } catch (ex) {
-            console.log('Enek seng salah iki ' + ex);
+            console.log('Enek seng salah iki wkwk' + ex);
             return { status: '400', Error: "" + ex };
         };
     }
