@@ -255,7 +255,9 @@ Router.get('/assets/:id',
             .catch(function(error) {
                 // handle error
                 res.status(400).json({
-                    message: "Bad Request"
+                    message: "Bad Request",
+                    image_url: null,
+                    image_size: null
                 })
             })
             .then(function() {
