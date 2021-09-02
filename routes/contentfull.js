@@ -37,8 +37,8 @@ Router.post('/new/content',
         const tokens = [];
         let querys = await pool.query('SELECT * from ' + dbViewprofile + ' ORDER BY user_id ASC')
         querys.rows.forEach((item) => {
-            if (item.token_fcm) {
-                tokens.push(item.token_fcm);
+            if (item.token_firebase) {
+                tokens.push(item.token_firebase);
             }
         })
         let body = notifbody.postcontentful(data, tokens);
