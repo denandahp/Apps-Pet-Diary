@@ -64,8 +64,8 @@ class UserModel {
                 let valueuser = [data.uid_firebase, data.email, data.type_auth, d];
                 console.log(valueuser);
                 resuser = await pool.query('INSERT INTO ' + dbUser + ' (uid, email, type_auth, created_at) VALUES ($1, $2, $3, $4) RETURNING *', valueuser);
-                let valuedet = [data.uid_firebase, data.full_name, data.phone, data.birthday, data.photo_path, data.token_firebase, data.token_fcm, d];
-                resdet = await pool.query('INSERT INTO ' + dbDetail + ' (uid_user, full_name, phone, birthday, user_photo, token_firebase, token_fcm,  created_at) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *', valuedet);
+                let valuedet = [data.uid_firebase, data.full_name, data.phone, data.birthday, data.photo_path, data.token_firebase, d];
+                resdet = await pool.query('INSERT INTO ' + dbDetail + ' (uid_user, full_name, phone, birthday, user_photo, token_firebase,  created_at) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *', valuedet);
                 console.log("eerrroo : " + resdet.code)
                 result.user = resuser.rows[0];
                 result.detail = resdet.rows[0];
@@ -117,8 +117,8 @@ class UserModel {
             } else {
                 let valueuser = [data.uid_firebase, data.email];
                 resuser = await pool.query('UPDATE ' + dbUser + ' SET email = $2 WHERE uid = $1 RETURNING *', valueuser);
-                let valuedet = [data.uid_firebase, data.full_name, data.phone, data.birthday, data.photo_path, data.token_firebase, data.token_fcm, d];
-                resdet = await pool.query('UPDATE' + dbDetail + ' SET (full_name, phone, birthday, user_photo, token_firebase, token_fcm,  created_at) = ($2, $3, $4, $5, $6, $7) where uid_user = $1 RETURNING *', valuedet);
+                let valuedet = [data.uid_firebase, data.full_name, data.phone, data.birthday, data.photo_path, data.token_firebase, d];
+                resdet = await pool.query('UPDATE' + dbDetail + ' SET (full_name, phone, birthday, user_photo, token_firebase,  created_at) = ($2, $3, $4, $5, $6) where uid_user = $1 RETURNING *', valuedet);
                 result.detail = resdet.rows[0];
                 result.user = resuser.rows[0];
                 console.log(result);
