@@ -40,7 +40,8 @@ class notificationModel{
         });
         res.status(200).json({
           pesan: message,
-          result: result.rows
+          result: result.rows,
+          notification: body
         });
       }catch(ex){
         console.log('Enek seng salah iki ' + ex)
