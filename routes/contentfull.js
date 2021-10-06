@@ -10,45 +10,49 @@ const dbViewprofile = schema + '.' + '"profile_user"';
 
 
 //Pak mahmudi
-// const url = 'https://cdn.contentful.com/spaces/p4stxfymwhqd/environments/master/entries'
-// const token = 'order=sys.createdAt&access_token=okjmWMGmwQYyEQELGVcZ-01PrrVhhN1g4TCprTCUM3I'
+const url = 'https://cdn.contentful.com/spaces/p4stxfymwhqd/environments/master/entries'
+const url_asset = 'https://cdn.contentful.com/spaces/p4stxfymwhqd/environments/master/assets'
+
+const token = 'order=sys.createdAt&access_token=okjmWMGmwQYyEQELGVcZ-01PrrVhhN1g4TCprTCUM3I'
 
 //Nusantera
-const url = 'https://cdn.contentful.com/spaces/qtkmssz6omcr/environments/master/entries'
-const token = 'order=sys.createdAt&access_token=iA7Az6-D9yOxIxh1q5e9-ya7U2YT6_pBOKnyEydE7Wc'
+//const url = 'https://cdn.contentful.com/spaces/qtkmssz6omcr/environments/master/entries'
+//const token = 'order=sys.createdAt&access_token=iA7Az6-D9yOxIxh1q5e9-ya7U2YT6_pBOKnyEydE7Wc'
 
 Router.post('/new/content',
     async function(req, res, next) {
         let data = req.body
-	console.log(req.body)
-        //console.log(req.headers)
-        //virtual response
+            //	res.send(data)
+            //          console.log(req.body)
+            //console.log(req.headers)
+            //virtual response
         let valueForNotif = {
-            id: data.id,
-            type: data.type,
-            createdAt: data.createdAt,
-            updatedAt: data.updatedAt
+                id: data.id,
+                type: data.type,
+                createdAt: data.createdAt,
+                updatedAt: data.updatedAt
 
-        }
-	//res.status(200).send("OKAY")
+            }
+            //res.status(200).send("OKAY")
         const tokens = [];
         let querys = await pool.query('SELECT * from ' + dbViewprofile + ' ORDER BY user_id ASC')
         querys.rows.forEach((item) => {
             if (item.token_firebase) {
-              tokens.push(item.token_firebase);
-           }
+                tokens.push(item.token_firebase);
+            }
         })
         let body = notifbody.postcontentful(data, tokens);
-//	res.status(200).send(body)
+        //        res.status(200).send(tokens)
+        //	console.log(body.payload)
         admin.messaging().sendMulticast(body.payload)
-        .then((response) => {
-            let message = response.successCount + ' messages were sent successfully'
-            console.log(response.successCount + ' messages were sent successfully');
-            res.status(200).json({
-                pesan: message,
-                result: response,
-          })
-        })
+            .then((response) => {
+                let message = response.successCount + ' messages were sent successfully'
+                console.log(response.successCount + ' messages were sent successfully');
+                res.status(200).json({
+                    pesan: message,
+                    result: response,
+                })
+            })
     }
 );
 
@@ -64,6 +68,7 @@ Router.get('/head/:skip?',
         axios.get(url_combine)
             .then(function(response) {
                 // handle success
+
                 var images = response.data.includes.Asset.map(data => {
                     return {
                         id: data.sys.id,
@@ -71,7 +76,9 @@ Router.get('/head/:skip?',
                         image_size: data.fields.file.details.image
                     }
                 })
+
                 var head = response.data.items.map(data => {
+                    // console.log(data.fields.images)
                     return {
                         id: data.sys.id,
                         createdAt: data.sys.createdAt,
@@ -86,6 +93,68 @@ Router.get('/head/:skip?',
 
                     }
                 })
+
+
+                res.status(200).json({
+                    message: "Success",
+                    total: response.data.total,
+                    skip: req.params.skip,
+                    limit: response.data.limit,
+                    head: head
+                })
+
+            })
+            .catch(function(error) {
+                // handle error
+                res.status(200).json({
+                    message: "News empty",
+                    total: 0,
+                    skip: req.params.skip,
+                    limit: 0,
+                    head: []
+                })
+            })
+            .then(function() {
+                // always executed
+            });
+    }
+);
+
+Router.get('/featured',
+    function(req, res, next) {
+        var url_combine = url + '?skip=0&limit=2&' + token
+
+
+
+        axios.get(url_combine)
+            .then(function(response) {
+                // handle success
+
+                var images = response.data.includes.Asset.map(data => {
+                    return {
+                        id: data.sys.id,
+                        image_url: data.fields.file.url.replace("//", ""),
+                        image_size: data.fields.file.details.image
+                    }
+                })
+
+                var head = response.data.items.map(data => {
+                    // console.log(data.fields.images)
+                    return {
+                        id: data.sys.id,
+                        createdAt: data.sys.createdAt,
+                        updatedAt: data.sys.updatedAt,
+                        title: data.fields.title,
+                        images: data.fields.images.map(data2 => {
+
+                            return images.find(item => {
+                                return item.id == data2.sys.id
+                            })
+                        })
+
+                    }
+                })
+
 
                 res.status(200).json({
                     message: "Success",
@@ -144,7 +213,8 @@ Router.get('/content/:id',
                     title: response.data.fields.title,
                     createdAt: response.data.sys.createdAt,
                     updatedAt: response.data.sys.updatedAt,
-                    contents
+                    images_id: response.data.fields.images[0].sys.id,
+                    contents,
                 })
 
 
@@ -154,6 +224,40 @@ Router.get('/content/:id',
                 // handle error
                 res.status(400).json({
                     message: "Bad Request"
+                })
+            })
+            .then(function() {
+                // always executed
+            });
+    }
+);
+
+
+Router.get('/assets/:id',
+    function(req, res, next) {
+        var content_id = req.params.id
+        axios.get(url_asset + '/' + content_id + '?' + token)
+            .then(function(response) {
+                var images = {
+                    id: content_id,
+                    image_url: response.data.fields.file.url.replace("//", ""),
+                    image_size: response.data.fields.file.details.image
+                }
+
+                res.status(200).json({
+                    message: "Success",
+                    images
+                })
+
+
+
+            })
+            .catch(function(error) {
+                // handle error
+                res.status(400).json({
+                    message: "Bad Request",
+                    image_url: null,
+                    image_size: null
                 })
             })
             .then(function() {
